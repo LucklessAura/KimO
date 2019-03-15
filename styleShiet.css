@@ -72,17 +72,23 @@ nav > ul > li > a:visited
 
 aside
 {
-	overflow:scroll;	
+	overflow:auto;	
 	grid-row-start: 2;
 	grid-column: 1 / 2;
 	background-color:#7070db;
 }
 
+section
+{
+	grid-row-start: 2;
+	grid-column: 2 / 3;
+	background-color:#7070db;
+}
 main
 {
 	height:auto;
 	display : grid;
-	grid-template-columns: 25vw 75vw;
-	grid-template-rows : 15vh minmax(100px, 83vh);
-	grid-gap:0;
+	grid-template-columns: 24vw 74vw;
+	grid-template-rows : 13vh minmax(100px, 81vh);
+	grid-gap:1vw;
 }
