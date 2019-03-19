@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="weather.css">
 <link rel="stylesheet" media="(max-width: 949px)" href="lowRez.css">
-<link rel="stylesheet" media="(min-width:950px)" href="styleSheetModified.css">
+<link rel="stylesheet" media="(min-width:950px)" href="styleSheet.css">
 </head>
 
 
@@ -32,14 +32,78 @@
 
 <aside>
 
-<p>News or something here </p>
-
+<p><b><font size="5" >Live notifications</font></b></p>
+<p>Baby is safe</p>
+<p style=" text-decoration: underline; color:red;">Baby is near danger!</p>
+<p style=" text-decoration: underline; color:red;">Baby is near danger!</p>
+<p style=" text-decoration: underline; color:red;">Baby is near danger!</p>
+<p >Baby is safe</p>
+<p>Baby is safe</p>
+<p>Baby is safe</p>
+<p>Baby is safe</p>
 
 </aside>
 
 <section>
 
-<p>main section here</p>
+<p><b><font size="5" >Child details:</font></b></p>
+<div align="left">
+<font size="4" ><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your child:</b></font>
+
+<li>Age :10</li>
+<li>Name :George</li>
+<li>Weight :30kg</li>
+<li>Height :1.40</li>
+<li>Hair color:Brown</li>
+<li>Places that are considered dangerous: </li>
+<form action="#.php">
+<input type="checkbox" name="dangers" value="A" />Bar<br />
+<input type="checkbox" name="dangers" value="B" />Mall<br />
+<input type="checkbox" name="dangers" value="C" />Town center<br />
+<input type="checkbox" name="dangers" value="D" />Tran station<br />
+<input type="checkbox" name="dangers" value="E" />Metro station<br />
+<br>
+<li>Things that are considered dangers: </li>
+<input type="checkbox" name="dangerss" value="Aa" />Dogs<br />
+<input type="checkbox" name="dangerss" value="Bb" />Cats<br />
+<input type="checkbox" name="dangerss" value="Cc" />Fast cars<br />
+<input type="checkbox" name="dangerss" value="Dd" />Homeless people<br />
+<input type="checkbox" name="dangerss" value="Ee" />Drunk people<br />
+<br>
+
+<li>What to do if child is near danger:</li>
+<input type="radio" name="danger"
+<?php if (isset($danger) && $danger=="callme") echo "checked";?>Call me
+<input type="radio" name="danger"
+<?php if (isset($danger) && $danger=="textme") echo "checked";?>Text me
+<input type="radio" name="danger"
+<?php if (isset($danger) && $danger=="calll") echo "checked";?>Call nearest relative
+<input type="radio" name="danger"
+<?php if (isset($danger) && $danger=="textt") echo "checked";?>Text nearest relative<br>
+<br>
+<input type="submit" value="Change this">
+<input type="submit" value="Add child">
+
+</form>
+
+  <font size="4" ><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your child talked with this children:</b></font>
+  
+<li>Jimmy</li>
+  <li>Tom</li>
+ <li>Bill</li>
+ <br>
+ <font size="4" ><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your child visited this areas:</b></font>
+
+<li>Church</li>
+  <li>Store</li>
+ <li>School</li>
+<br>
+<font size="4" ><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your child was near this dangers:</b></font>
+
+<li>Dog</li>
+  <li>Fast car</li>
+ 
+</div>
 
 </section>
 
