@@ -81,6 +81,10 @@ section
 	background-color:#ffffff;
 	text-align:center;
 	position:relative;
+	display:flex;
+	justify-content: center;
+	 align-items: center;
+	 
 }
 
 main
@@ -94,64 +98,5 @@ main
 
 section > div
 {
-	height:auto;
-	width:8vw;
-	position:absolute;
-	padding:0;
-	margin:0;
-	right:0;
-	bottom:0;
-	background-color: rgba(255, 26, 26,0.5);
-}
-
-div > label
-{
-	display:block;
-	font-size:1.5vw;
-	background: url(down.png) no-repeat center;
-	background-size:2vw;
-}
-
-
-div > input
-{
-	display:none;
-}
-
-div > ul
-{
-	list-style-type:none;
-	padding:0;
-	margin:0;
-	border:0;
-}
-div > ul > li
-{
-	height:1.5vw;
-	padding:0;
-	margin:0;
-	border:0;
-}
-
-
-div > input:checked ~ ul > li
-{
-	height:0;
-	display:none;
-}
-
-div > input:checked ~ label 
-{
-	display:block;
-	background: url(up.png) no-repeat center;
-	background-size:2vw;
-}
-
-section > img
-{
-	height:81vh;
-	width:74vw;
-	position: absolute;
-	top:0;
-	left:0;
+	margin:3vw;
 }

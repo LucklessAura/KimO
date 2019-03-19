@@ -23,12 +23,10 @@ nav > ul
 	top:0;
 	right:0;
 	list-style-type:none;
-	width:100vw;
+	width:100%;
 	white-space:nowrap;
 	display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: space-around;
+    flex-flow: column wrap;
 	padding:0;
 	margin:0;
 	border:0;
@@ -37,7 +35,7 @@ nav > ul
 
 nav > ul > li
 {
-	width:20%;
+	width:100%;
 	padding:0;
 	margin:0;
 	border:0;
@@ -89,7 +87,6 @@ section
 	grid-column: 2 / 3;
 	background-color:#ffffff;
 	text-align:center;
-	position:relative;
 	overflow:auto;
 }
 
@@ -108,11 +105,11 @@ section > div.Legenda
 {
 	height:auto;
 	width:10vw;
-	position:absolute;
 	padding:0;
 	margin:0;
-	right:0;
-	top:0;
+	position: fixed;
+	bottom: 0;
+	right: 0;
 	background-color: rgba(255, 26, 26,0.4);
 }
 
