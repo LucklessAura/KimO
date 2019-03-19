@@ -89,6 +89,7 @@ section
 	background-color:#ffffff;
 	text-align:center;
 	position:relative;
+	overflow:auto;
 }
 
 main
@@ -103,20 +104,20 @@ main
 section > div
 {
 	height:auto;
-	width:8vw;
+	width:10vw;
 	position:absolute;
 	padding:0;
 	margin:0;
 	right:0;
-	bottom:0;
-	background-color: rgba(255, 26, 26,0.5);
+	top:0;
+	background-color: rgba(255, 26, 26,0.4);
 }
 
 div > label
 {
 	display:block;
 	font-size:1.5vw;
-	background: url(down.png) no-repeat center;
+	background: url(up.png) no-repeat center;
 	background-size:2vw;
 }
 
@@ -157,14 +158,15 @@ div > input:checked ~ ul > li
 div > input:checked ~ label 
 {
 	display:block;
-	background: url(up.png) no-repeat center;
+	background: url(down.png) no-repeat center;
 	background-size:2vw;
 }
 
+
 section > img
 {
-	height:81vh;
-	width:74vw;
+	height:auto;
+	width:auto;
 	position: absolute;
 	top:0;
 	left:0;
@@ -194,4 +196,28 @@ aside > label
 	font-weight:900;
 	display:block;
 	position:absoulte;
+}
+
+section ul 
+{
+	display:grid;
+	grid-template-columns:1vw 2vw;
+	grid-auto-rows : 4vw;
+	grid-column-gap: 3vw;
+}
+
+section  ul > li 
+{
+	margin-left:1vh;
+}
+
+section  ul > li > img 
+{
+	width:1vw;
+}
+
+aside > div
+{
+	display: block;
+	overflow:auto;
 }
