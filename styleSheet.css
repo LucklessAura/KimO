@@ -7,15 +7,15 @@ body
 
 nav
 {
+	border-radius: 25px;
 	position:absolute;
 	display:flex;
 	background-color: #cc0000;
 	position:absolute;
-	width:100%;
-	top:0;
-	right:0;
-	margin:0;
+	width:99%;	
 	padding:0;
+	box-shadow: 0px 3px 0px 3px rgba(0,0.15,0.15,0.15);
+	border-radius: 25px;
 }
 
 nav > ul
@@ -45,10 +45,11 @@ nav > ul > li
 
 nav > ul > li > a
 {
+	border-radius: 25px;
 	display:block;
 	padding:5vh;
 	text-align:center;
-	background-color:#b30000;
+	background-color:#cc0000;
 	color:white;
 	text-decoration:none;
 	font-family:Courier new;
@@ -74,23 +75,28 @@ nav > ul > li > a:visited
 
 aside
 {
+	border-radius: 5px;
 	font-family:Courier new;
 	overflow:auto;	
 	grid-row-start: 2;
 	grid-column: 1 / 2;
 	background-color:#ffffff;
+	width:101%;	
 	text-align:center;
+	box-shadow: 0px 3px 3px 3px rgba(0,0.15,0.15,0.15);
 }
 
 section
 {
-	font-family:Courier new;
+	border-radius: 5px;
+	font-family:Courier new;		
 	grid-row-start: 2;
 	grid-column: 2 / 3;
 	background-color:#ffffff;
 	text-align:center;
 	position:relative;
 	overflow:auto;
+	box-shadow: 0px 3px 3px 3px rgba(0,0.15,0.15,0.15);
 }
 
 main
