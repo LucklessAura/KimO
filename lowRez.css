@@ -10,6 +10,7 @@ nav  > label
 {
 	padding:0;
 	position:float;
+	margin-right:10px;
 	top:0;
 	float:right;
 	display:block;
@@ -32,7 +33,7 @@ nav > input:checked ~ label
 {
 	position:float;
 	top:0;
-	padding:0;
+	margin-right:10px;
 	float:right;
 	display:block;
 	height:5vh;
@@ -141,9 +142,9 @@ main
 {
 	height:auto;
 	display : grid;
-	grid-template-columns: 24vw 74vw;
+	grid-template-columns: 70vw 27vw;
 	grid-template-rows : 13vh minmax(100px, 81vh);
-	grid-gap:1vw;
+	grid-gap:0vw;
 }
 
 
@@ -283,4 +284,36 @@ nav
 	top:0;
 	left:0;	
 	position:absolute;
+}
+
+main > input
+{
+	z-index:3;
+	position:absolute;
+	left:0;
+	top:50%;
+	display:none;
+}
+
+
+main > label
+{
+	
+	z-index:3;
+	position:absolute;
+	left:0;
+	top:50%;
+	padding:0;
+	display:block;
+	height:15vh;
+	width:1vh;
+	background-color:  rgba(89, 89, 89,0.5);
+
+}
+
+main > input:checked + label + nav +  aside
+{
+	display:block;
+	z-index:2;
+	position:relative;
 }
