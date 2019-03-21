@@ -44,7 +44,7 @@
 
 <aside>
 
-<p><b><font size="5" >Live notifications</font></b></p>
+<h2>Live notifications</h2>
 <p>Child is safe</p>
 <p style=" text-decoration: underline; color:red;">Child is near danger!</p>
 <p style=" text-decoration: underline; color:red;">Child is near danger!</p>
@@ -58,9 +58,9 @@
 
 <section>
 
-<p><b><font size="5" >Child details:</font></b></p>
-<div align="center">
-<font size="4" ><b>Your child:</b></font>
+<h2>Child details:</h2>
+<div>
+<h5>Your child:</h5>
 <br>
 Age :10<br>
 Name :George<br>
@@ -84,14 +84,14 @@ Things that are considered dangers: <br>
 <br>
 
 What to do if child is near danger:
-<input type="radio" name="danger"
-<?php if (isset($danger) && $danger=="callme") echo "checked";?>Call me
-<input type="radio" name="danger"
-<?php if (isset($danger) && $danger=="textme") echo "checked";?>Text me
-<input type="radio" name="danger"
-<?php if (isset($danger) && $danger=="calll") echo "checked";?>Call nearest relative
-<input type="radio" name="danger"
-<?php if (isset($danger) && $danger=="textt") echo "checked";?>Text nearest relative<br>
+<input type="radio" name="danger">
+Call me
+<input type="radio" name="danger">
+Text me
+<input type="radio" name="danger">
+Call nearest relative
+<input type="radio" name="danger">
+Text nearest relative<br>
 <br>
 <input type="submit" value="Change this">
 <input type="submit" value="Add child">
