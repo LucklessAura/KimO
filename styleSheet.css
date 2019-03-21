@@ -5,6 +5,12 @@ body
 	
 }
 
+section > img.logo
+{
+	height:20vh;
+	width:auto;
+}
+
 div.account > input
 {
 	display:block;

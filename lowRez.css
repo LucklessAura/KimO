@@ -5,6 +5,11 @@ body
 	
 }
 
+section > img.logo
+{
+	width:100%;
+	height:auto;
+}
 
 nav  > label
 {
