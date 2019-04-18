@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+<meta charset="utf-8">
+<meta name="media type" content="HTML,text">
+<title>KimO</title>
+
+</head>
+
+<body>
+
+<article>
+<h1>KimO
+</h1>
+
+<div>
+
+<section typeof="AuthorsList">
+  <h2>Authors</h2>
+  <ul>
+    <li typeof="ContributorRole" property=" author">
+      <span typeof=" Person">
+        <meta property=" givenName" content="Paul">
+        <meta property=" additionalName" content="Andrei">
+        <meta property=" familyName" content="Curea">
+        <span property=" name">Curea Paul-Andrei</span>
+      </span>
+      <ul>
+        <li property=" roleContactPoint" typeof=" ContactPoint">
+          <a href="mailto:paul.curea@uaic.info.ro"
+             property=" email">paul.curea@uaic.info.ro</a>
+        </li>
+      </ul>
+    </li>
+	
+	<li typeof="ContributorRole" property=" author">
+      <span typeof=" Person">
+        <meta property=" givenName" content="Andrei">
+        <meta property=" additionalName" content="George">
+        <meta property=" familyName" content="Caloian">
+        <span property=" name">Caloian Andrei George</span>
+      </span>
+      <ul>
+        <li property=" roleContactPoint" typeof=" ContactPoint">
+          <a href="mailto:andrei.caloian@uaic.info.ro"
+             property=" email">andrei.caloian@uaic.info.ro</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+
+<section typeof="Affiliations">
+  <h2>Affiliations</h2>
+  <ul>
+    <li id="Affiliations">
+      <span typeof=" Organization" resource="https://www.info.uaic.ro/">
+        <span property=" name">Faculty of Computer Science</span>,
+        <span property=" parentOrganization">
+          <span typeof=" Organization">
+            <span property=" name">Web Technologies</span>
+            <span property=" location" typeof=" Place">
+              <span property=" address" typeof=" PostalAddress">
+                <span property=" addressLocality">Iasi</span>,
+                <span property=" addressRegion">Iasi</span>,
+                <span property=" addressCountry">Romania</span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </span>
+    </li>
+  </ul>
+</section>
+
+
+</div>
+
+
+<div>
+
+
+<section typeof="TechArticle">
+
+<h2>Problem Description</h2>
+<h3><span typeof="About">About</span></h3>
+<p>KimO is a website that aims to help in child supervision</p>
+
+<h3><span typeof="Description">Description</span></h3>
+<p>KimO will use 'Some beacon API' to get your current location, as a supervisor, as well as the location of children that you added throug the Child Details page, the webpage will then show you using 'Some map API' on a live map your location, your children's location as well as other users and their respective childern that are in the vicinity. The webpage will also allert you about different dangers, the type of allert will be chosen by the user. The webpage will also offer information about the distance between you and the children and allert if a certain range is exceeded. At the end of the day in the Child Details page you will be able to see the activity of your child during the day.</p>
+
+<h3><span typeof="Description">What needs to be implemented</span></h3>
+<ul>
+	<li>Database to remember users and their children</li>
+	<li>Choosing a beacon API that can provide geographical coordonates</li>
+	<li>Choosing a map API that can show locations based on geographical coordonates</li>
+	<li>Creating a transparent overlay over the map where different points can be displayed</li>
+	<li>Creating function that gets coordonates from beacon and sends them to the map</li>
+	<li>Create function that gets pint from map and shows them on overlay</li>
+	<li>Create function  that can calculate distance between two beacon locations</li>
+	<li>Function that record time spent near another beacon if distance between them is small</li>
+	<li>Functions that can send messages, play sounds, send emails, etc.</li>
+	<li>Fuction that recieves impulses and prints a message on screen and also calls a different function that will proceed to take a different action</li>
+	<li>Function for login</li>
+</ul>
+
+<h3><span typeof="Description">Data Aquisition</span></h3>
+<ul >
+	<li>Data for database from forms in the webpage</li>
+	<li>Location coordonates from a beacon API</li>
+	<li>Distances from operations aplicated to the coordinates of the beacons</li>
+	<li>Impulses either manually from a console or trough a script that sends them tot the apropriate function</li>
+</ul>
+
+<meta propriety="accesMode" content=' "auditory","textual","visual" '>
+<meta property="accessibilityControl" content="fullKeyboardControl"/>
+<meta property="accessibilityControl" content="fullMouseControl"/>
+
+
+</section>
+
+
+</div>
+
+
+</article>
+
+
+</body>
+
+
+</html>
