@@ -11,6 +11,19 @@ section > img.logo
 	height:auto;
 }
 
+html > body > main  > section > div#map-container {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        font-family: sans-serif;
+        background-color: #04041b;
+      }
+.locate {
+	top: 6em;
+	left: .5em;
+  }
+
+
 nav  > label
 {
 	padding:0;

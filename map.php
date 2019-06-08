@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" media="(max-width: 949px)" href="lowRez.css">
-<link rel="stylesheet" media="(min-width:950px)" href="styleSheet.css">
-<link rel="icon" href="logoMic.png">
+<link rel="stylesheet" media="(max-width: 949px)" href="css/lowRez.css">
+<link rel="stylesheet" media="(min-width:950px)" href="css/styleSheet.css">
+<link rel="icon" href="images/logoMic.png">
 <title>KimO</title>
 </head>
 
@@ -21,24 +21,17 @@
 <label for="newsButton">  </label>
 
 
-<nav>
-
-<input type="checkbox" id="menuButton">
-
-<label for="menuButton">  </label>
-
-
-<ul>
-
-<li><a href="index.php"> Home</a></li>
-<li><a href="map.php"> Map</a></li>
-<li><a href="detailsChild.php"> Details Child</a></li>
-<li><a href="login.html"> Login</a></li>
-<li><a href="contact.php"> Contact</a></li>
-
-</ul>
-
-</nav>
+<?php
+    require 'phpFunctions/isLogged.php';
+    if(isLogged() == true)
+    {
+        require 'phpFunctions/loggedNavbar.php';
+    }
+    else
+    {
+        require 'phpFunctions/notLoggedNavbar.php';
+    }
+?>
 
 <aside>
 <h2>News </h2>
@@ -57,14 +50,14 @@
 
 <section>
 
-<div id="map">
+<div id="map-container">
 
 <script src="ol/build/ol.js"></script>	
 
 
 <script> 
 const map = new ol.Map({
-  target: 'map',
+  target: 'map-container',
   layers: [
     new ol.layer.Tile({
       source: new ol.source.OSM()
@@ -77,18 +70,7 @@ const map = new ol.Map({
 });
 </script>
 </div>
-<!--
-<img src="logo.png" class="logo" alt="logo">
-<br><br><br>
-<h4>
- KimO is your personal automated kid monitor that can help you supervise your kid's daily activities <br>
- KimO uses a GPS system to monitor the current position of your child with just a glance at your screen <br>
- KimO will use your personal plans of a building or street <br>
- With KimO you can set areas on your map as 'dangerous', when your child will come in the radius of those spots an allert will anounce you about it <br>
- KimO will keep tabs about your child's activity trought the day, all information beeing accesible trough the 'Details Child' page <br>
-</h4>
-<h1>Make child supervision easy with KimO</h1>
--->
+
 </section>
 
 

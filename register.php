@@ -32,7 +32,7 @@ session_destroy();*/
 
 <input type="checkbox" id="newsButton">
 
-<label for="newsButton">Â  </label>
+<label for="newsButton">  </label>
 
 
 <?php
@@ -57,22 +57,25 @@ session_destroy();*/
 
 <section>
 
-<script src="javascriptFunctions/login.js"></script>
+<script src="javascriptFunctions/register.js"></script>
 
-<div class="account">
-<p>Log In</p>
-
-<form id="loginForm">
-  <input type="text" id="loginUsername" placeholder="User Name"><br>
-  <input type="password" value="" id="loginPassword" placeholder="Password"><br><br>
-  <input type="checkBox" id="rememberMe">Remember Me</button>
-  </br></br>
-  <button type="button" value="" onclick="LoginFunction()">Log In</button>
+<div class="accountCreation">
+<p>Register</p>
+<form id="registerForm">
+    <input type="text" id="registerUsername" placeholder="User Name" onkeyup="VerifyLength()"><br></br>
+  <input type="text" value="" id="registerEmail" placeholder="Email" onkeyup="VerifyEmail()"><br><br>
+  
+  <button type="button" value="" onclick="RegisterFunction()">Register</button>
 </form> 
 
+</div>
+
+<div class="rules">
+     <p id = "validLong">Username should be at least 6 characters long and at most 20</p>
+     <p id = "validEmail">Email should be valid</p>
+</div>
 
 <p id="querryResult"></p>
-</div>
 
 </section>
 

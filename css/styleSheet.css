@@ -5,15 +5,41 @@ body
 	
 }
 
+
+html > body  > main > section > div#map-container 
+{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	font-family: sans-serif;
+	background-color: #04041b;
+}
+.locate 
+{
+top: 6em;
+left: .5em;
+}
+    
 section > img.logo
 {
 	height:20vh;
 	width:auto;
 }
 
-div.account > input
+html > body > section > div.account > input
 {
 	display:block;
+}
+
+div.accountCreation
+{
+	display:block;
+}
+
+div.rules
+{
+	display:block;
+	color:red;
 }
 
 nav
