@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" media="(max-width: 949px)" href="lowRez.css">
+<link rel="stylesheet" media="(min-width:950px)" href="styleSheet.css">
+<link rel="icon" href="logoMic.png">
+<title>KimO</title>
+</head>
+
+<body>
+
+<main>
+
+<input type="checkbox" id="newsButton">
+
+<label for="newsButton">  </label>
+
+
+<nav>
+
+<input type="checkbox" id="menuButton">
+
+<label for="menuButton">  </label>
+
+
+<ul>
+
+<li><a href="index.php"> Home</a></li>
+<li><a href="map.php"> Map</a></li>
+<li><a href="detailsChild.php"> Details Child</a></li>
+<li><a href="login.html"> Login</a></li>
+<li><a href="contact.php"> Contact</a></li>
+
+</ul>
+
+</nav>
+
+<aside>
+<h2>News </h2>
+
+<h3><b>KimO just reached international level</b><br>
+<b>New update:added ability to see closest relative to your child</b><br>
+<b>Child rescued by firefighters using KimO</b><br>
+<b>New tracking app released today</b><br>
+<b>Register now and you get a month for free</b><br>
+<b>Parents around the globe satisfied with KimO</b><br>
+<b>New update:better performance in map section</b><br>
+<b>This is our new app KimO hope you enjoy it</b><br></h3>
+
+</aside>
+
+
+<section>
+
+<div id="map">
+
+<script src="ol/build/ol.js"></script>	
+
+
+<script> 
+const map = new ol.Map({
+  target: 'map',
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.OSM()
+    })
+  ],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([0, 0]),
+    zoom: 2
+  })
+});
+</script>
+</div>
+<!--
+<img src="logo.png" class="logo" alt="logo">
+<br><br><br>
+<h4>
+ KimO is your personal automated kid monitor that can help you supervise your kid's daily activities <br>
+ KimO uses a GPS system to monitor the current position of your child with just a glance at your screen <br>
+ KimO will use your personal plans of a building or street <br>
+ With KimO you can set areas on your map as 'dangerous', when your child will come in the radius of those spots an allert will anounce you about it <br>
+ KimO will keep tabs about your child's activity trought the day, all information beeing accesible trough the 'Details Child' page <br>
+</h4>
+<h1>Make child supervision easy with KimO</h1>
+-->
+</section>
+
+
+</main>
+
+</body>
+
+</html>

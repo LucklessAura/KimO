@@ -1,0 +1,25 @@
+{
+  "name": "kimo",
+  "version": "1.0.0",
+  "description": "Project for Web Techcologies 2019 UAIC Iasi",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucklessAura/KimO.git"
+  },
+  "author": "Curea Paul-Andrei (LucklessAura)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucklessAura/KimO/issues"
+  },
+  "homepage": "https://github.com/LucklessAura/KimO#readme",
+  "dependencies": {
+    "ol": "^5.3.3"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
+}
