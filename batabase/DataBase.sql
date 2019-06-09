@@ -99,6 +99,20 @@ exception when no_data_found then
 return;
 end;
 
+
+
+
+create or replace procedure LogInChild(v_username in varchar2 , v_password in varchar2, v_id out number) is
+begin
+select id into v_id from children where v_username = username and v_password = password;
+exception when no_data_found then
+  v_id :=-1;
+  return;
+return;
+end;
+
+
+
 delete from supervisors where id =0;
 
 insert into supervisors(id,email,username,password,location,lastupdate) values (supervisorid.NEXTVAL,'dummy','dummy','dummy','0.000,0.000',systimestamp);

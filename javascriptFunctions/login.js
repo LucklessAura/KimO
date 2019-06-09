@@ -39,7 +39,13 @@ xhttp.onreadystatechange = function()
 			}
 			else
 			{
-				window.location.replace("mapLogged.php");
+				if(response.trim() == "1")
+					window.location.replace("mapLoggedSupervisor.php");
+				else 
+					if(response.trim() == "2")
+					{
+						window.location.replace("mapLoggedChild.php");
+					}
 			}
 		}	
 		

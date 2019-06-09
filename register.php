@@ -62,10 +62,9 @@ session_destroy();*/
 <div class="accountCreation">
 <p>Register</p>
 <form id="registerForm">
-    <input type="text" id="registerUsername" placeholder="User Name" onkeyup="VerifyLength()"><br></br>
-  <input type="text" value="" id="registerEmail" placeholder="Email" onkeyup="VerifyEmail()"><br><br>
-  
-  <button type="button" value="" onclick="RegisterFunction()">Register</button>
+    <input type="text" id="registerUsername" placeholder="User Name" onkeyup="ifValid()" required ><br></br>
+  <input type="text" value="" id="registerEmail" placeholder="Email" onkeyup="ifValid()" required ><br><br>
+  <button id ="registerButton" type="button" value="" onclick="RegisterFunction()" disabled="true">Register</button>
 </form> 
 
 </div>
@@ -73,6 +72,7 @@ session_destroy();*/
 <div class="rules">
      <p id = "validLong">Username should be at least 6 characters long and at most 20</p>
      <p id = "validEmail">Email should be valid</p>
+     <p id = "notChild">username should not contain '_child'</p>
 </div>
 
 <p id="querryResult"></p>

@@ -24,6 +24,11 @@
 
 <?php
     require 'phpFunctions/loggedNavbar.php';
+	session_start();
+	if(!isset($_SESSION['userId']))
+	{
+		header('Location: login.php');
+	}
 ?>
 
 <aside>
@@ -48,7 +53,7 @@
 <script src="ol/build/ol.js"></script>	
 
 
-<script src="javascriptFunctions/mapLogged.js"> </script>
+<script src="javascriptFunctions/mapLoggedSupervisor.js"> </script>
 </div>
 
 </section>

@@ -6,12 +6,11 @@
       die;
   }
   session_start();
-  $userId = $_SESSION['userId'];
+  $childId = $_SESSION['childId'];
   $location = $_POST['coords'];
-  echo '+'.$userId.'+';
-  $sql = 'BEGIN update supervisors set lastupdate = systimestamp,location = :location where id = :uid; END;';
+  $sql = 'BEGIN update children set lastupdate = systimestamp,location = :location where id = :uid; END;';
   $stmt = oci_parse($conn,$sql);
-  oci_bind_by_name($stmt,':uid',$userId,32);
+  oci_bind_by_name($stmt,':uid',$childId,32);
   oci_bind_by_name($stmt,':location',$location,60);
   oci_execute($stmt);
   echo '1';

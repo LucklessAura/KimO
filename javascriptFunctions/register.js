@@ -24,23 +24,50 @@ xhttp.send(values);
 
 }
 
+function ifValid()
+{
+	if(VerifyLength() == true && VerifyNotChild() == true && VerifyEmail() == true)
+	{
+		document.getElementById("registerButton").disabled = false;
+	}
+}
+
 function VerifyLength()
 {
 	var input = document.getElementById("registerUsername").value;
 	var rule = document.getElementById("validLong").style;
-	rule.setProperty("color","red");
-	var regex = /^((?:\w)|(?:\d)|-|!|&|\.|\$){6,20}$/;
-	if(regex.test(input))
-	{
-		rule.setProperty("color","green");
-	}
-	else
-	{
-		rule.setProperty("color","red");
-	}
+
+			rule.setProperty("color","red");
+			var regex = /^((?:\w)|(?:\d)|-|!|&|\.|\$){6,20}$/;
+			if(regex.test(input))
+			{
+				rule.setProperty("color","green");
+				return true;
+			}
+			else
+			{
+				rule.setProperty("color","red");
+				document.getElementById("registerButton").disabled = true;
+				return false;
+			}
 }
 
-
+function VerifyNotChild()
+{
+	var input = document.getElementById("registerUsername").value;
+	var rule = document.getElementById("notChild").style;
+	if(!input.includes("_child"))
+	{
+		rule.setProperty("color","green");
+		return true;
+	}
+		else
+	{
+		rule.setProperty("color","red");
+		document.getElementById("registerButton").disabled = true;
+		return false;
+	}
+}
 
 
 function VerifyEmail()
@@ -52,9 +79,12 @@ function VerifyEmail()
 	if(regex.test(input))
 	{
 		rule.setProperty("color","green");
+		return true;
 	}
 	else
 	{
 		rule.setProperty("color","red");
+		document.getElementById("registerButton").disabled = true;
+		return false;
 	}
 }
