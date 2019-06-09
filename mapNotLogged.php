@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"  href="ol/css/ol.css">
 <link rel="stylesheet" media="(max-width: 949px)" href="css/lowRez.css">
 <link rel="stylesheet" media="(min-width:950px)" href="css/styleSheet.css">
 <link rel="icon" href="images/logoMic.png">
@@ -55,20 +56,8 @@
 <script src="ol/build/ol.js"></script>	
 
 
-<script> 
-const map = new ol.Map({
-  target: 'map-container',
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.OSM()
-    })
-  ],
-  view: new ol.View({
-    center: ol.proj.fromLonLat([0, 0]),
-    zoom: 2
-  })
-});
-</script>
+<script src="javascriptFunctions/mapNotLogged.js"> </script>
+
 </div>
 
 </section>

@@ -11,7 +11,6 @@ xhttp.onreadystatechange = function()
 	if (this.readyState == 4 && this.status == 200) 
 	{
 		var response = this.responseText;
-		alert(document.getElementById('rememberMe').value);
 		if(response.trim() == "-2")
 		{
 			alert("there was an error while connecting to the database");
@@ -35,18 +34,19 @@ xhttp.onreadystatechange = function()
 				setTimeout(function()
 				{
 					querryResult.innerHTML = "";
+					
 				},3000);
 			}
 			else
 			{
-				window.location.replace("map.php");
+				window.location.replace("mapLogged.php");
 			}
 		}	
 		
 	}
 }
 
-var values = "username=" + document.getElementById('loginUsername').value + "&password=" + document.getElementById('loginPassword').value + "&remember=" + document.getElementById('rememberMe').value;
+var values = "username=" + document.getElementById('loginUsername').value + "&password=" + document.getElementById('loginPassword').value + "&remember=" + document.getElementById('rememberMe').checked;
 
 xhttp.send(values);
 

@@ -25,8 +25,9 @@
   }
   else
   {
+      session_start();
       $remember = $_POST['remember'];
-      if($remember == "on")
+      if($remember == "true")
       {
           $sessionId= mt_rand();
           $token = mt_rand();
@@ -39,7 +40,6 @@
           oci_bind_by_name($stmt,':id',$id,32);
           oci_execute($stmt);
       }
-      session_start();
       $_SESSION['userId'] = $id;
       echo $id;
       oci_close($conn);

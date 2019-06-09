@@ -14,7 +14,8 @@ html > body  > main > section > div#map-container
 	font-family: sans-serif;
 	background-color: #04041b;
 }
-.locate 
+
+html > body > main > section .locate 
 {
 top: 6em;
 left: .5em;

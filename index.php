@@ -24,7 +24,7 @@
 
 <?php
     require 'phpFunctions/isLogged.php';
-    if(isLogged() == true)
+    if(isLogged())
     {
         require 'phpFunctions/loggedNavbar.php';
     }

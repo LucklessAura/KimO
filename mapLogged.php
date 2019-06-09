@@ -1,16 +1,17 @@
 <!DOCTYPE html>
+
 <html>
 
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="ol/css/ol.css">
 <link rel="stylesheet" media="(max-width: 949px)" href="css/lowRez.css">
 <link rel="stylesheet" media="(min-width:950px)" href="css/styleSheet.css">
 <link rel="icon" href="images/logoMic.png">
 <title>KimO</title>
 </head>
-
 
 <body>
 
@@ -22,16 +23,7 @@
 
 
 <?php
-    require "phpFunctions/isLogged.php";
-    echo '<p style="position:absolute">' . isLogged() . '</p>';
-    if(isLogged())
-    {
-        require 'phpFunctions/loggedNavbar.php';
-    }
-    else
-    {
-        require 'phpFunctions/notLoggedNavbar.php';
-    }
+    require 'phpFunctions/loggedNavbar.php';
 ?>
 
 <aside>
@@ -48,30 +40,22 @@
 
 </aside>
 
-<section>
-<div>
 
-<font size="4" ><b>Tehnical issues:</b></font><br><br>
-T*: 000.000.01.00<br>
-Program: 24/24
-<br><br>
-<font size="4" ><b>Complaints & Notices:</b></font><br><br>
-T*: 000.000.11.00<br>
-Program: 09.00-20.00
-<br><br>
-<font size="4" ><b>Company:</b></font><br><br>
-S.C. KimO International S.A.<br>
-Adress: Soseaua Virtutii, nr. 102, Sector 6, Bucuresti<br>
-CUI: 14399840<br>
-T*: 000.000.12.00<br>
-F*: 000.000.12.01
-<br><br>
+<section>
+
+<div id="map-container">
+
+<script src="ol/build/ol.js"></script>	
+
+
+<script src="javascriptFunctions/mapLogged.js"> </script>
 </div>
+
 </section>
+
 
 </main>
 
 </body>
-
 
 </html>

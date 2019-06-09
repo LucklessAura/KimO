@@ -8,7 +8,8 @@ id number(36,2) primary key,
 email varchar2(150),
 username varchar2(100),
 password varchar2(20),
-location varchar2(50)
+location varchar2(50),
+lastUpdate timestamp
 );
 
 create table children (
@@ -16,7 +17,8 @@ id number(36,2) primary key,
 supervisorID number(36,2),
 username varchar2(100),
 password varchar2(100),
-location varchar2(50)
+location varchar2(50),
+lastUpdate timestamp
 );
 
 
@@ -99,9 +101,11 @@ end;
 
 delete from supervisors where id =0;
 
-insert into supervisors(id,email,username,password,location) values (supervisorid.NEXTVAL,'dummy','dummy','dummy','0.000,0.000');
+insert into supervisors(id,email,username,password,location,lastupdate) values (supervisorid.NEXTVAL,'dummy','dummy','dummy','0.000,0.000',systimestamp);
 
-insert into children(id,supervisorid,username,password,location) values (childid.NEXTVAL,1,'dummy_child','dummy','0.000,0.000');
+insert into children(id,supervisorid,username,password,location,lastupdate) values (childid.NEXTVAL,1,'dummy_child','dummy','0.000,0.000',systimestamp);
+
+insert into children(id,supervisorid,username,password,location,lastupdate) values (childid.NEXTVAL,1,'dummy_child2','dummy','1.000,1.000',systimestamp);
 
 commit;
 

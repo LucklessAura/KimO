@@ -2,11 +2,11 @@
 
 function isLogged()
 {
-    if(isset($_SESSION['userID']))
+    session_start();
+    if(isset($_SESSION['userId']))
     {
         return true;
     }
-    return false;
-    
+    return false; 
 }
 ?>
