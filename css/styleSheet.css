@@ -179,10 +179,6 @@ div.Legenda > input
 	display:none;
 }
 
-aside > input
-{
-	display:none;
-}
 
 div.Legenda > ul
 {
@@ -235,11 +231,6 @@ aside > label + p
 aside > input:checked ~ label + p 
 {
 	display:block;
-}
-
-aside > input
-{
-	display:none;
 }
 
 aside > label

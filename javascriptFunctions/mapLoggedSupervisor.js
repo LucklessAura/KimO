@@ -21,6 +21,7 @@ const layer = new ol.layer.Vector({
 map.addLayer(layer);
 
 var supervisor;
+var lastUpdate = Date.now();
 
 navigator.geolocation.watchPosition(function(pos) {
   var coords = [pos.coords.longitude, pos.coords.latitude];
@@ -50,7 +51,11 @@ navigator.geolocation.watchPosition(function(pos) {
 		 console.log(e);
 	}
 	source.addFeature(supervisor);
-	sendUpdate(pos.coords.longitude.toString() + "," + pos.coords.latitude.toString());
+	if(Math.floor((Date.now()-lastUpdate)/1000) >= 3)//update once every 3 seconds maximum 
+	{
+		sendUpdate(pos.coords.longitude.toString() + "," + pos.coords.latitude.toString());
+		lastUpdate = Date.now();
+	}
 }, function(error) {
   alert('ERROR: Error on location, are you on the secure link? (https)');
 }, {
@@ -99,7 +104,7 @@ function sendUpdate(coordinates)
 		}
 	}
 	var coords = coordinates;
-	xhttp.send("coords="+coords);
+	xhttp.send("coords="+coords + "&distance=" + document.getElementById("distance").value);
 }
 
 
@@ -176,4 +181,72 @@ function showChildOnMap(name,coordinates)
 
 setInterval(function() {
 	  addChildren();
-}, 1000);
+}, 3000);
+
+var dblClickInteraction;
+// find DoubleClickZoom interaction
+map.getInteractions().getArray().forEach(function(interaction) {
+  if (interaction instanceof ol.interaction.DoubleClickZoom) {
+    dblClickInteraction = interaction;
+  }
+});
+// remove from map
+map.removeInteraction(dblClickInteraction);
+
+
+
+
+const sourceDanger = new ol.source.Vector();
+
+const layerDanger = new ol.layer.Vector({
+  source: sourceDanger
+
+});
+
+map.addLayer(layerDanger);
+
+
+map.on('singleclick', function(evt){
+    var coord = evt.coordinate;
+	coord = ol.proj.transform(coord, 'EPSG:3857', 'EPSG:4326');
+	
+	var danger = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat(coord))
+      });
+	danger.setId("danger");
+	  danger.setStyle(new ol.style.Style({
+        image: new ol.style.Icon(({
+            color: '#ffcd46',
+            crossOrigin: 'anonymous',
+            src: 'https://raw.githubusercontent.com/LucklessAura/KimO/master/images/danger.png',
+			scale:0.06,
+			
+        })),
+		text: new ol.style.Text({
+				font: "Courier new 25px",	
+				fill: new ol.style.Fill({ color: '#414141' }),
+				text: "danger"
+			  })
+    }));
+	try
+	{
+	sourceDanger.removeFeature(sourceDanger.getFeatureById("danger"));
+	}
+	catch(e)
+	{
+		console.log(e);
+	}
+	sourceDanger.addFeature(danger);
+});
+	
+map.on('dblclick', function (e) {
+	
+	e = ol.proj.transform(e.coordinate, 'EPSG:3857', 'EPSG:4326');
+    var features = map.getFeaturesAtPixel(map.getPixelFromCoordinate(ol.proj.fromLonLat(e) ));
+    if (features!= null) {
+       sourceDanger.removeFeature(sourceDanger.getFeatureById(features[0].getId()));
+    }
+});
+
+
+

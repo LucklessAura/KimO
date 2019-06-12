@@ -32,16 +32,12 @@
 ?>
 
 <aside>
-<h2>News </h2>
-
-<h3><b>KimO just reached international level</b><br>
-<b>New update:added ability to see closest relative to your child</b><br>
-<b>Child rescued by firefighters using KimO</b><br>
-<b>New tracking app released today</b><br>
-<b>Register now and you get a month for free</b><br>
-<b>Parents around the globe satisfied with KimO</b><br>
-<b>New update:better performance in map section</b><br>
-<b>This is our new app KimO hope you enjoy it</b><br></h3>
+    <br><br>
+    <label for="distance">Maximim distance between you and children(in meters) :</label>
+    <input type="number" id="distance" name="distance" min="0" value="500">
+     <br><br>
+    <label for="distance">Danger points range(in meters) :</label>
+    <input type="number" id="dangerRange" name="distance" min="0" value="100">
 
 </aside>
 
@@ -50,10 +46,15 @@
 
 <div id="map-container">
 
+    
+<audio id="alert" src="alarm.mp3" preload="auto"></audio>
+
 <script src="ol/build/ol.js"></script>	
 
+<script src="javascriptFunctions/receveAlert.js"> </script>
 
 <script src="javascriptFunctions/mapLoggedSupervisor.js"> </script>
+
 </div>
 
 </section>

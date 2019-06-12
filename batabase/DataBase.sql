@@ -1,6 +1,7 @@
 drop table supervisors;
 drop table children;
 drop table alreadylogged;
+drop table alertMessage;
 
 
 create table supervisors (
@@ -9,7 +10,8 @@ email varchar2(150),
 username varchar2(100),
 password varchar2(20),
 location varchar2(50),
-lastUpdate timestamp
+lastUpdate timestamp,
+maxDist number(38,0)
 );
 
 create table children (
@@ -35,8 +37,16 @@ code varchar(1000),
 issued timestamp
 );
 
+
+create table alertMessage(
+id number(38,0) primary key,
+parentid number(38,0),
+alertType int,
+username varchar2(100)
+)
+
 drop sequence supervisorID;
-create sequence supervisorID minvalue 0 increment by 1;
+create sequence supervisorID minvalue 1 increment by 1;
 
 drop sequence childID;
 create sequence childID minvalue 0 increment by 1;
@@ -45,6 +55,8 @@ create sequence childID minvalue 0 increment by 1;
 drop sequence loginID;
 create sequence loginID minvalue 0 increment by 1;
 
+drop sequence allertmessageID;
+create sequence  allertmessageID minvalue 0 increment by 1;
 
 
 create or replace procedure rememberLogin(v_seriesIdentifier in varchar2, v_token in varchar2,v_id in number) is
@@ -113,9 +125,9 @@ end;
 
 
 
-delete from supervisors where id =0;
+delete from supervisors where id =2;
 
-insert into supervisors(id,email,username,password,location,lastupdate) values (supervisorid.NEXTVAL,'dummy','dummy','dummy','0.000,0.000',systimestamp);
+insert into supervisors(id,email,username,password,location,lastupdate,MAXDIST) values (supervisorid.NEXTVAL,'dummy','dummy','dummy','0.000,0.000',systimestamp,'1000');
 
 insert into children(id,supervisorid,username,password,location,lastupdate) values (childid.NEXTVAL,1,'dummy_child','dummy','0.000,0.000',systimestamp);
 
@@ -141,6 +153,7 @@ is
 end;
 /
  
+
 create or replace package body apex_mail_p
 is
  -- Write a MIME header

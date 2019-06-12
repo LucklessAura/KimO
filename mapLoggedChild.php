@@ -33,16 +33,15 @@
 
 <aside>
 <h2>News </h2>
+<script src="javascriptFunctions/sendAlert.js"></script>
 
-<h3><b>KimO just reached international level</b><br>
-<b>New update:added ability to see closest relative to your child</b><br>
-<b>Child rescued by firefighters using KimO</b><br>
-<b>New tracking app released today</b><br>
-<b>Register now and you get a month for free</b><br>
-<b>Parents around the globe satisfied with KimO</b><br>
-<b>New update:better performance in map section</b><br>
-<b>This is our new app KimO hope you enjoy it</b><br></h3>
+<button type="button" value="" onclick="sendAlert(1)">Stranger danger</button>
+<button type="button" value="" onclick="sendAlert(2)">Got hit by a car</button>
+<button type="button" value="" onclick="sendAlert(3)">Hurt myself</button>
+<button type="button" value="" onclick="sendAlert(4)">I'm lost</button>
+<button type="button" value="" onclick="sendAlert(6)">Other SOS</button>
 
+<p id ="alertMessage" value=""></p>
 </aside>
 
 

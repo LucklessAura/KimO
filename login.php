@@ -63,7 +63,7 @@ session_destroy();*/
 <p>Log In</p>
 
 <form id="loginForm">
-  <input type="text" id="loginUsername" placeholder="User Name"><br>
+  <input type="text" value="" id="loginUsername" placeholder="User Name"><br>
   <input type="password" value="" id="loginPassword" placeholder="Password"><br><br>
   <input type="checkBox" id="rememberMe">Remember Me</button>
   </br></br>
