@@ -2,6 +2,7 @@ drop table supervisors;
 drop table children;
 drop table alreadylogged;
 drop table alertMessage;
+drop table dangerSpots;
 
 
 create table supervisors (
@@ -45,15 +46,25 @@ alertType int,
 username varchar2(100)
 )
 
+create table dangerSpots(
+id number(38,0) primary key,
+supervisorid number(38,0),
+range number(38,0),
+location varchar2(70)
+)
+
 drop sequence supervisorID;
 create sequence supervisorID minvalue 1 increment by 1;
 
+drop sequence dangerspotsID;
+create sequence dangerspotsID minvalue 1 increment by 1;
+
 drop sequence childID;
-create sequence childID minvalue 0 increment by 1;
+create sequence childID minvalue 1 increment by 1;
 
 
 drop sequence loginID;
-create sequence loginID minvalue 0 increment by 1;
+create sequence loginID minvalue 1 increment by 1;
 
 drop sequence allertmessageID;
 create sequence  allertmessageID minvalue 0 increment by 1;

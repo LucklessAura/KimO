@@ -63,6 +63,12 @@ function receveAlert()
 									alert(sub[0] +  " is getting too far from you");
 									break;
 								}
+								case ("7"):
+								{
+									document.getElementById('alert').play();
+									alert(sub[0] +  " is near danger");
+									break;
+								}
 								default:
 								{
 									document.getElementById('alert').play();

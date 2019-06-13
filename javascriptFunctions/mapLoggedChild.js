@@ -145,7 +145,14 @@ function addSupervisors()
 	xhttp.send();
 }
 
+const sourceDanger = new ol.source.Vector();
 
+const layerDanger = new ol.layer.Vector({
+  source: sourceDanger
+
+});
+
+map.addLayer(layerDanger);
 
 function showSupervisorsOnMap(name,coordinates)
 {
@@ -192,4 +199,106 @@ function distanceBetweenPoints(point1, point2){
 
 setInterval(function() {
 	  addSupervisors();
+}, 3000);
+
+var maxDangerDist = 1000000;
+
+function isNearDanger()
+{
+	var features=[];
+	features = layerDanger.getSource().getFeatures();
+	for(var feature in features)
+	{
+		feature = layerDanger.getSource().getFeatureById("danger" + feature);
+		if(distanceBetweenPoints(feature,me) < maxDangerDist)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+setInterval(function() {
+	if(isNearDanger() == true)
+	{
+		sendAlert(7);
+	}
+}, 3000);
+
+
+function addDangerSpots()
+{
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.open("POST","phpFunctions/addDangerSpotsOnMap.php",true);
+
+	xhttp.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+	
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			var response = this.responseText;
+			if(response.trim() == "-2")
+			{
+				alert("there was an error while connecting to the database");
+			}
+			else 
+			{
+				sourceDanger.clear();
+				dangerNumber=0;
+				var array = response.split('&');
+				maxDangerDist = parseInt(array[0]);
+				for(var i =1;i<array.length-1;i++)
+				{
+					showDangerSpotsOnMap(array[i]);
+				}
+				
+			}
+		}
+	}
+	xhttp.send();
+}
+
+var dangerNumber=0;
+
+function showDangerSpotsOnMap(coordinates)
+{
+	coordinates = coordinates.split(',');
+	coordinates[1] = parseFloat(coordinates[1]);
+	coordinates[0] = parseFloat(coordinates[0]);
+	var danger = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([coordinates[0], coordinates[1]]))
+      });
+	danger.setId("danger" + dangerNumber);
+	  danger.setStyle(new ol.style.Style({
+        image: new ol.style.Icon(({
+            color: '#ffcd46',
+            crossOrigin: 'anonymous',
+            src: 'https://raw.githubusercontent.com/LucklessAura/KimO/master/images/danger.png',
+			scale:0.06,
+			
+        })),
+		text: new ol.style.Text({
+				font: "Courier new 25px",	
+				fill: new ol.style.Fill({ color: '#414141' }),
+				text: name
+			  })
+    }));
+	try
+	{
+	sourceDanger.removeFeature(sourceDanger.getFeatureById("danger" + dangerNumber));
+	}
+	catch(e)
+	{
+		console.log(e);
+	}
+	sourceDanger.addFeature(danger);
+	dangerNumber++;
+}
+
+
+
+setInterval(function() {
+	  addDangerSpots();
 }, 3000);

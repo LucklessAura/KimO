@@ -23,15 +23,23 @@ function sendAlert(code)
 				}
 				else
 				{
-					if(code != "5")
+					if(code != "5" && code !="7")
 					{
 						var aux = document.getElementById('alertMessage');
 						aux.innerHTML = "Alert sent";
 					}
 					else
 					{
-						var aux = document.getElementById('alertMessage');
-						aux.innerHTML = "You are going too far, a supervisor has been alerted";
+						if(code == "7")
+						{
+							var aux = document.getElementById('alertMessage');
+							aux.innerHTML = "You are near danger";
+						}
+						else
+						{
+							var aux = document.getElementById('alertMessage');
+							aux.innerHTML = "You are going too far, a supervisor has been alerted";
+						}
 					}
 					
 				}

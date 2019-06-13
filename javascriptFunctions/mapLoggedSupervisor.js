@@ -18,6 +18,30 @@ const layer = new ol.layer.Vector({
 
 });
 
+function clearDangerSpots()
+{
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.open("POST","phpFunctions/clearDangerSpots.php",true);
+
+	xhttp.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+	
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			var response = this.responseText;
+			if(response.trim() == "-2")
+			{
+				alert("there was an error while connecting to the database");
+			}
+		}
+	}
+	xhttp.send();
+}
+
+clearDangerSpots();
+
 map.addLayer(layer);
 
 var supervisor;
@@ -104,7 +128,7 @@ function sendUpdate(coordinates)
 		}
 	}
 	var coords = coordinates;
-	xhttp.send("coords="+coords + "&distance=" + document.getElementById("distance").value);
+	xhttp.send("coords="+coords + "&distance=" + document.getElementById("distance").value+ "&range=" + document.getElementById("dangerRange").value);
 }
 
 
@@ -159,7 +183,6 @@ function showChildOnMap(name,coordinates)
             crossOrigin: 'anonymous',
             src: 'https://raw.githubusercontent.com/LucklessAura/KimO/master/images/baby.png',
 			scale:0.06,
-			
         })),
 		text: new ol.style.Text({
 				font: "Courier new 25px",	
@@ -205,15 +228,15 @@ const layerDanger = new ol.layer.Vector({
 
 map.addLayer(layerDanger);
 
-
+var dangerNumber = 0;
 map.on('singleclick', function(evt){
     var coord = evt.coordinate;
 	coord = ol.proj.transform(coord, 'EPSG:3857', 'EPSG:4326');
-	
+	writeDangerToDatabase(coord);
 	var danger = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat(coord))
       });
-	danger.setId("danger");
+	danger.setId("danger" + dangerNumber);
 	  danger.setStyle(new ol.style.Style({
         image: new ol.style.Icon(({
             color: '#ffcd46',
@@ -225,28 +248,75 @@ map.on('singleclick', function(evt){
 		text: new ol.style.Text({
 				font: "Courier new 25px",	
 				fill: new ol.style.Fill({ color: '#414141' }),
-				text: "danger"
+				text: "danger" + dangerNumber
 			  })
     }));
 	try
 	{
-	sourceDanger.removeFeature(sourceDanger.getFeatureById("danger"));
+	sourceDanger.removeFeature(sourceDanger.getFeatureById("danger" + dangerNumber));
 	}
 	catch(e)
 	{
 		console.log(e);
 	}
 	sourceDanger.addFeature(danger);
+	dangerNumber++;
 });
 	
 map.on('dblclick', function (e) {
 	
 	e = ol.proj.transform(e.coordinate, 'EPSG:3857', 'EPSG:4326');
     var features = map.getFeaturesAtPixel(map.getPixelFromCoordinate(ol.proj.fromLonLat(e) ));
+	e=ol.proj.transform(features[0].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326');
+	deleteDangerFromDatabase(e);
     if (features!= null) {
        sourceDanger.removeFeature(sourceDanger.getFeatureById(features[0].getId()));
     }
 });
 
 
+function writeDangerToDatabase(coords)
+{
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.open("POST","phpFunctions/writeDanger.php",true);
+
+	xhttp.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+	
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			var response = this.responseText;
+			if(response.trim() == "-2")
+			{
+				alert("there was an error while connecting to the database");
+			}
+		}
+	}
+	xhttp.send("coords=" + coords);
+}
+
+
+function deleteDangerFromDatabase(coords)
+{
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.open("POST","phpFunctions/deleteDanger.php",true);
+
+	xhttp.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+	
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			var response = this.responseText;
+			if(response.trim() == "-2")
+			{
+				alert("there was an error while connecting to the database");
+			}
+		}
+	}
+	xhttp.send("coords=" + coords);
+}
 
