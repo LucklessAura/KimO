@@ -20,13 +20,19 @@
 
 <label for="newsButton">  </label>
 
-
 <?php
-    require "phpFunctions/isLogged.php";
-    echo '<p style="position:absolute">' . isLogged() . '</p>';
-    if(isLogged())
+    require 'phpFunctions/isLogged.php';
+    $result = isLogged();
+    if($result > 0)
     {
-        require 'phpFunctions/loggedNavbar.php';
+        if($result == 1)
+        {
+             require 'phpFunctions/loggedSupervisorNavbar.php';
+        }
+        else
+        {
+            require 'phpFunctions/loggedChildNavbar.php';
+        }
     }
     else
     {

@@ -11,8 +11,8 @@ echo '<nav>
 	
 <li><a href="index.php"> Home</a></li>
 <li><a href="mapLoggedSupervisor.php"> Map</a></li>
-<li><a href="detailsChild.php"> Details Child</a></li>
-<li><a href="account.php">Account</a></li>
+<li><a href="detailsChildren.php"> Details Children</a></li>
+<li><a href="accountSupervisor.php">Account</a></li>
 <li><a href="contact.php"> Contact</a></li>
 
 </ul>

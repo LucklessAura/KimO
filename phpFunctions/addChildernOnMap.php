@@ -7,8 +7,9 @@
   }
   session_start();
   $userId = $_SESSION['userId'];
-  $query = "SELECT username,location FROM children WHERE supervisorid = $userId";
+  $query = "SELECT username,location FROM children WHERE supervisorid = $userId and round((cast(current_timestamp as date) - cast(children.lastupdate as date))* 24 * 60) < :offlineTime ";
   $statement = oci_parse($conn, $query);
+ oci_bind_by_name($statement,':offlineTime',$_POST['offlineTime'],32); 
   oci_execute($statement);
   while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS))
   {

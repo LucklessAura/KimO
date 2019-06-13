@@ -9,7 +9,7 @@ create table supervisors (
 id number(36,2) primary key,
 email varchar2(150),
 username varchar2(100),
-password varchar2(20),
+password varchar2(1000),
 location varchar2(50),
 lastUpdate timestamp,
 maxDist number(38,0)
@@ -19,18 +19,27 @@ create table children (
 id number(36,2) primary key,
 supervisorID number(36,2),
 username varchar2(100),
-password varchar2(100),
+password varchar2(1000),
 location varchar2(50),
 lastUpdate timestamp
 );
 
 
-create table alreadyLogged (
+create table alreadyLoggedSupervisors (
 id number(36,2) primary key,
 userid number(38),
 seriesIdentifier varchar2(300) not null,
 token raw(300) not null
 );
+
+
+create table alreadyLoggedChildren (
+id number(36,2) primary key,
+userid number(38),
+seriesIdentifier varchar2(300) not null,
+token raw(300) not null
+);
+
 
 create table PassResetTable(
 id number(28,0),
@@ -70,52 +79,97 @@ drop sequence allertmessageID;
 create sequence  allertmessageID minvalue 0 increment by 1;
 
 
-create or replace procedure rememberLogin(v_seriesIdentifier in varchar2, v_token in varchar2,v_id in number) is
+create or replace procedure rememberLoginSupervisors(v_seriesIdentifier in varchar2, v_token in varchar2,v_id in number) is
 v_raw raw(300);
 v_aux number;
 begin
 begin
-select id into v_aux from alreadylogged where userid = v_id and rownum<=1;
+select id into v_aux from alreadyloggedsupervisors where userid = v_id and rownum<=1;
 exception when no_data_found then
 v_raw :=UTL_RAW.CAST_TO_RAW(v_token);
 v_raw := dbms_crypto.Hash(src => v_raw, typ => DBMS_CRYPTO.HASH_SH1);
-insert into alreadylogged (id,userid,seriesidentifier,token) values (loginid.nextval,v_id,v_seriesidentifier,v_raw);
+insert into alreadyloggedsupervisors (id,userid,seriesidentifier,token) values (loginid.nextval,v_id,v_seriesidentifier,v_raw);
 return;
 end;
-delete from alreadylogged where userid = v_id;
+delete from alreadyloggedsupervisors where userid = v_id;
 v_raw :=UTL_RAW.CAST_TO_RAW(v_token);
 v_raw := dbms_crypto.Hash(src => v_raw, typ => DBMS_CRYPTO.HASH_SH1);
-insert into alreadylogged (id,userid,seriesidentifier,token) values (loginid.nextval,v_id,v_seriesidentifier,v_raw);
+insert into alreadyloggedsupervisors (id,userid,seriesidentifier,token) values (loginid.nextval,v_id,v_seriesidentifier,v_raw);
 return;
 end;
 
-create or replace procedure isLoginValid(v_seriesIdentifier in varchar2, v_token in varchar2,v_response out varchar2) is
+create or replace procedure isLoginValidSupervisors(v_seriesIdentifier in varchar2, v_token in varchar2,v_response out varchar2) is
 v_raw raw(300);
 v_id number;
 begin
 begin
 v_raw :=UTL_RAW.CAST_TO_RAW(v_token);
 v_raw := dbms_crypto.Hash(src => v_raw, typ => DBMS_CRYPTO.HASH_SH1);
-select id into v_id from ALREADYLOGGED where v_seriesIdentifier= SERIESIDENTIFIER;
+select id into v_id from alreadyloggedsupervisors where v_seriesIdentifier= SERIESIDENTIFIER;
 exception when no_data_found then 
   v_response := '-1';
   return;
 end;
 begin
-select id into v_id from ALREADYLOGGED where v_seriesIdentifier = SERIESIDENTIFIER and v_raw = token;
+select id into v_id from alreadyloggedsupervisors where v_seriesIdentifier = SERIESIDENTIFIER and v_raw = token;
 exception when no_data_found then 
   v_response := '-2';
   return;
 end;
-v_response :='1';
+v_response :=v_id;
 return;
 end;
 
 
 
-create or replace procedure LogIn(v_username in varchar2 , v_password in varchar2, v_id out number) is
+
+create or replace procedure rememberLoginChildren(v_seriesIdentifier in varchar2, v_token in varchar2,v_id in number) is
+v_raw raw(300);
+v_aux number;
 begin
-select id into v_id from SUPERVISORS where v_username = username and v_password = password;
+begin
+select id into v_aux from alreadyloggedchildren where userid = v_id and rownum<=1;
+exception when no_data_found then
+v_raw :=UTL_RAW.CAST_TO_RAW(v_token);
+v_raw := dbms_crypto.Hash(src => v_raw, typ => DBMS_CRYPTO.HASH_SH1);
+insert into alreadyloggedchildren (id,userid,seriesidentifier,token) values (loginid.nextval,v_id,v_seriesidentifier,v_raw);
+return;
+end;
+delete from alreadyloggedchildren where userid = v_id;
+v_raw :=UTL_RAW.CAST_TO_RAW(v_token);
+v_raw := dbms_crypto.Hash(src => v_raw, typ => DBMS_CRYPTO.HASH_SH1);
+insert into alreadyloggedchildren (id,userid,seriesidentifier,token) values (loginid.nextval,v_id,v_seriesidentifier,v_raw);
+return;
+end;
+
+create or replace procedure isLoginValidChildren(v_seriesIdentifier in varchar2, v_token in varchar2,v_response out varchar2) is
+v_raw raw(300);
+v_id number;
+begin
+begin
+v_raw :=UTL_RAW.CAST_TO_RAW(v_token);
+v_raw := dbms_crypto.Hash(src => v_raw, typ => DBMS_CRYPTO.HASH_SH1);
+select id into v_id from alreadyloggedchildren where v_seriesIdentifier= SERIESIDENTIFIER;
+exception when no_data_found then 
+  v_response := '-1';
+  return;
+end;
+begin
+select id into v_id from alreadyloggedchildren where v_seriesIdentifier = SERIESIDENTIFIER and v_raw = token;
+exception when no_data_found then 
+  v_response := '-2';
+  return;
+end;
+v_response :=v_id;
+return;
+end;
+
+
+create or replace procedure LogIn(v_username in varchar2 , v_password in varchar2, v_id out number) is
+v_pass varchar2(1000);
+begin
+v_pass := utl_encode.text_encode(v_password,'AL32UTF8',UTL_ENCODE.BASE64);
+select id into v_id from SUPERVISORS where v_username = username and v_pass = password;
 exception when no_data_found then
   v_id :=-1;
   return;
@@ -126,8 +180,10 @@ end;
 
 
 create or replace procedure LogInChild(v_username in varchar2 , v_password in varchar2, v_id out number) is
+v_pass varchar2(1000);
 begin
-select id into v_id from children where v_username = username and v_password = password;
+v_pass := utl_encode.text_encode(v_password,'AL32UTF8',UTL_ENCODE.BASE64);
+select id into v_id from children where v_username = username and v_pass = password;
 exception when no_data_found then
   v_id :=-1;
   return;
@@ -249,16 +305,18 @@ end;
 
 create or replace procedure register(usernm in varchar2, emailus in varchar2,value out int) is
 v_pass varchar2(10);
+v_encodedpass varchar2(1000);
 v_id number(38,0);
 begin
 v_pass := dbms_random.string('X', 10);
 begin
+v_encodedpass := utl_encode.text_encode(v_pass,'AL32UTF8',UTL_ENCODE.BASE64);
   select id into v_id from supervisors where username = usernm;
   EXCEPTION WHEN no_data_found THEN
           begin
             select id into v_id from supervisors where email = emailus ;
             EXCEPTION WHEN no_data_found THEN
-                    insert into supervisors (id,username,password,email,location) values (supervisorid.nextval,usernm,v_pass,emailus,'0.000,0.000');
+                    insert into supervisors (id,username,password,email,location) values (supervisorid.nextval,usernm,v_encodedpass,emailus,'0.000,0.000');
                       apex_mail_p.mail('Oracleappsnotes', emailus, 'Thank you for registering', usernm 
                       || ' thank you for choosing us
                       '  ||'<br> Your password is: ' || v_pass || '<br> Please change it as fast as possible');
@@ -273,28 +331,92 @@ return;
 end;
 
 
+create or replace procedure registerChild(usernm in varchar2,v_supervisorId in number,value out int) is
+v_pass varchar2(10);
+v_id number(38,0);
+v_email varchar2(100);
+v_username varchar2(100);
+v_encodedpass varchar2(1000);
+begin
+v_pass := dbms_random.string('X', 10);
+v_encodedpass := utl_encode.text_encode(v_pass,'AL32UTF8',UTL_ENCODE.BASE64);
+v_username:= usernm || '_child';
+begin
+  select id into v_id from children where username = v_username;
+  EXCEPTION WHEN no_data_found THEN
+          begin
+            select email into v_email from supervisors where id = v_supervisorId;
+            EXCEPTION WHEN no_data_found THEN
+              value:=1;
+              return;      
+            end;
+            insert into children (id,supervisorid,username,password,location,lastupdate) values (childid.nextval,v_supervisorId,v_username,v_encodedpass,'0.000,0.000',null);
+                      apex_mail_p.mail('Oracleappsnotes', v_email, 'Your child has been added', 'username: <br> ' || v_username 
+                      || '<br> The password is: ' || v_pass || '<br> Please change it as fast as possible');
+                    value:=0;
+                    return;
+  end;
+value:=2;
+return;
+end;
 
-create or replace procedure issuerestcode(emailaddr in varchar2 , value out int,link in varchar2) is
+
+
+create or replace procedure issuerestcodesupervisors(v_username in varchar2, value out int,link in varchar2) is
 v_code varchar2(1000);
 v_id number(38,0);
-v_username varchar2(70);
+v_email varchar2(100);
 begin
 begin
-select id into v_id from supervisors where EMAIL = emailaddr;
+select id into v_id from supervisors where username = v_username and rownum<=1;
 exception when no_data_found then
   value :=1;
   return;
 end;
-select username into v_username from supervisors where id = v_id; 
-v_code := to_char(v_id) || ' '|| v_username || ' ' || emailaddr || ' ' || TO_CHAR(systimestamp);
+begin
+select email into v_email from supervisors where username = v_username and rownum<=1;
+exception when no_data_found then
+  value :=1;
+  return;
+end;
+v_code := to_char(v_id) || ' '|| v_username || ' ' || v_email || ' ' || TO_CHAR(systimestamp);
 v_code := utl_encode.text_encode(v_code,'AL32UTF8',UTL_ENCODE.BASE64);
 v_code := replace(replace(v_code,chr(10)),chr(13));
 insert into passresettable (id,code,issued) values (passreset_seq.nextval,v_code,systimestamp);
-  apex_mail_p.mail('Oracleappsnotes', emailaddr, 'Password Reset', v_username 
-                      || ' you have issued a password reset link, please follow this link '  || link || '/changePass.php' || '?' ||'code=' || v_code || '<br> The link will be avariable for the next 24 hours'  || '<br> If you did not ask for this please ignore the email');
+  apex_mail_p.mail('Oracleappsnotes', v_email, 'Password Reset', v_username 
+                      || ' you have issued a password reset link, please follow this link '  || link || '/KimO/changePass.php' || '?' ||'code=' || v_code || '<br> The link will be avariable for the next 24 hours'  || '<br> If you did not ask for this please ignore the email');
 value :=0;
 return;
 end;
+
+
+create or replace procedure issuerestcodechild(v_username in varchar2, value out int,link in varchar2) is
+v_code varchar2(1000);
+v_id number(38,0);
+v_email varchar2(100);
+begin
+begin
+select id into v_id from children where username = v_username and rownum<=1;
+exception when no_data_found then
+  value :=1;
+  return;
+end;
+select email into v_email from supervisors where id = (select supervisorid from children where v_id = id and rownum<=1); 
+v_code := to_char(v_id) || ' '|| v_username || ' ' || v_email || ' ' || TO_CHAR(systimestamp);
+v_code := utl_encode.text_encode(v_code,'AL32UTF8',UTL_ENCODE.BASE64);
+v_code := replace(replace(v_code,chr(10)),chr(13));
+insert into passresettable (id,code,issued) values (passreset_seq.nextval,v_code,systimestamp);
+  apex_mail_p.mail('Oracleappsnotes', v_email, 'Password Reset', v_username 
+                      || ' you have issued a password reset link, please follow this link '  || link || '/KimO/changePass.php' || '?' ||'code=' || v_code || '<br> The link will be avariable for the next 24 hours'  || '<br> If you did not ask for this please ignore the email');
+value :=0;
+return;
+end;
+
+
+
+
+
+
 
 
 create sequence passreset_seq start with 1;
@@ -312,6 +434,29 @@ value:=1;
 return ;
 end;
 
+
+create or replace procedure changePass(v_code in varchar2,pass in varchar2, value out int) is
+v_pass varchar2(30);
+v_email varchar2(70);
+v_code1 varchar2(1000);
+v_username varchar2(100);
+v_aux varchar2(1000);
+v_encodedpass varchar2(1000);
+begin
+  v_encodedpass := utl_encode.text_encode(pass,'AL32UTF8',UTL_ENCODE.BASE64);
+  v_code1 := utl_encode.text_decode(v_code,'AL32UTF8',UTL_ENCODE.BASE64);
+  v_aux:=v_code1;
+  v_code1 := substr(v_code1,1,instr(v_code1,' ')-1);
+  if(v_aux like ('%_child%')) then
+  
+    update children set password=trim(v_encodedpass) where id = to_number(v_code1);
+  else
+    update supervisors set password=trim(v_encodedpass) where id = to_number(v_code1);
+  end if;
+  delete from passresettable where v_code = code;
+  value:=1;
+  return;
+end;
 
 create or replace procedure resettablemanage is
 cursor issuedtime is select issued from passresettable order by ISSUED asc;

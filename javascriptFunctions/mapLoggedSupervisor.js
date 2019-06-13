@@ -131,7 +131,14 @@ function sendUpdate(coordinates)
 	xhttp.send("coords="+coords + "&distance=" + document.getElementById("distance").value+ "&range=" + document.getElementById("dangerRange").value);
 }
 
+const sourceChildren = new ol.source.Vector();
 
+const layerChildren = new ol.layer.Vector({
+  source: sourceChildren
+
+});
+
+map.addLayer(layerChildren);
 
 function addChildren()
 {
@@ -152,6 +159,7 @@ function addChildren()
 			}
 			else 
 			{
+				sourceChildren.clear();
 				var array = response.split('&');
 				for(var i =0;i<array.length-1;i++)
 				{
@@ -163,7 +171,7 @@ function addChildren()
 			}
 		}
 	}
-	xhttp.send();
+	xhttp.send("offlineTime="+document.getElementById("offlineTime").value);
 }
 
 
@@ -190,15 +198,8 @@ function showChildOnMap(name,coordinates)
 				text: name
 			  })
     }));
-	try
-	{
-	source.removeFeature(source.getFeatureById(name));
-	}
-	catch(e)
-	{
-		console.log(e);
-	}
-	source.addFeature(child);
+	
+	sourceChildren.addFeature(child);
 }
 
 

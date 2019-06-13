@@ -5,13 +5,14 @@
       echo '-2';
       die;
   }
+  session_start();
   $username = $_POST['username'];
-  $email = $_POST['email'];
+  $supervisorId = $_SESSION['userId'];
   $querryResponse = 0;
-  $sql =  'BEGIN register(:username,:email,:querryResponse); END;';
+  $sql =  'BEGIN registerChild(:username,:supervisorId,:querryResponse); END;';
   $stmt = oci_parse($conn,$sql);
-  oci_bind_by_name($stmt,':username',$username,50);
-  oci_bind_by_name($stmt,':email',$email,50);
+  oci_bind_by_name($stmt,':username',$username,100);
+  oci_bind_by_name($stmt,':supervisorId',$supervisorId,50);
   oci_bind_by_name($stmt,':querryResponse',$response,32);
   oci_execute($stmt);
   switch ($response)

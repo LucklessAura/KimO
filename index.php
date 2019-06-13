@@ -24,9 +24,17 @@
 
 <?php
     require 'phpFunctions/isLogged.php';
-    if(isLogged())
+    $result = isLogged();
+    if($result > 0)
     {
-        require 'phpFunctions/loggedNavbar.php';
+        if($result == 1)
+        {
+             require 'phpFunctions/loggedSupervisorNavbar.php';
+        }
+        else
+        {
+            require 'phpFunctions/loggedChildNavbar.php';
+        }
     }
     else
     {

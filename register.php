@@ -65,8 +65,7 @@ session_destroy();*/
     <input type="text" id="registerUsername" placeholder="User Name" onkeyup="ifValid()" required ><br></br>
   <input type="text" value="" id="registerEmail" placeholder="Email" onkeyup="ifValid()" required ><br><br>
   <button id ="registerButton" type="button" value="" onclick="RegisterFunction()" disabled="true">Register</button>
-</form> 
-
+</form>
 </div>
 
 <div class="rules">
@@ -75,8 +74,7 @@ session_destroy();*/
      <p id = "notChild">username should not contain '_child'</p>
 </div>
 
-<p id="querryResult"></p>
-
+<p id="response"></p>
 </section>
 
 </main>

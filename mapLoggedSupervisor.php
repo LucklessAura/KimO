@@ -23,12 +23,23 @@
 
 
 <?php
-    require 'phpFunctions/loggedNavbar.php';
-	session_start();
-	if(!isset($_SESSION['userId']))
-	{
-		header('Location: login.php');
-	}
+    require 'phpFunctions/isLogged.php';
+    $result = isLogged();
+    if($result > 0)
+    {
+        if($result == 1)
+        {
+             require 'phpFunctions/loggedSupervisorNavbar.php';
+        }
+        else
+        {
+            header('Location: login.php');
+        }
+    }
+    else
+    {
+        header('Location: login.php');
+    }
 ?>
 
 <aside>
@@ -38,6 +49,9 @@
      <br><br>
     <label for="distance">Danger points range(in meters) :</label>
     <input type="number" id="dangerRange" name="distance" min="0" value="100">
+    <br><br>
+    <label for="distance">Don't show children who are offline for more than(minutes):</label>
+    <input type="number" id="offlineTime" name="distance" min="1" value="5">
 
 </aside>
 

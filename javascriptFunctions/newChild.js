@@ -1,8 +1,8 @@
-function RegisterFunction()
+function newChildFunction()
 {
 var xhttp = new XMLHttpRequest();
 
-xhttp.open("POST","phpFunctions/registerRequest.php",true);
+xhttp.open("POST","phpFunctions/addChildRequest.php",true);
 
 xhttp.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
 
@@ -31,7 +31,7 @@ xhttp.onreadystatechange = function()
 			}
 			case("-3"):
 			{
-				response.innerHTML = "The email is already used";
+				response.innerHTML = "You have no email in the database";
 				setTimeout(function()
 				{
 					response.innerHTML = "";
@@ -53,15 +53,19 @@ xhttp.onreadystatechange = function()
 	}
 }
 
-var values = "username=" + document.getElementById("registerUsername").value + "&email="+ document.getElementById("registerEmail").value;
+var values = "username=" + document.getElementById("childUsername").value;
 
 xhttp.send(values);
+
+
 }
+
+
 
 function ifValid()
 {
 	var isOk=0;
-	if(VerifyLength() == true)
+	if(VerifyTheLength() == true)
 	{
 		isOk++;
 	}
@@ -77,23 +81,15 @@ function ifValid()
 	{
 		isOk=0;
 	}
-	if(VerifyEmail() == true)
+	if(isOk == 2)
 	{
-		isOk++;
-	}
-	else
-	{
-		isOk=0;
-	}
-	if(isOk == 3)
-	{
-		document.getElementById("registerButton").disabled = false;
+		document.getElementById("addChild").disabled = false;
 	}
 }
 
-function VerifyLength()
+function VerifyTheLength()
 {
-	var input = document.getElementById("registerUsername").value;
+	var input = document.getElementById("childUsername").value;
 	var rule = document.getElementById("validLong").style;
 
 	rule.setProperty("color","red");
@@ -106,14 +102,14 @@ function VerifyLength()
 	else
 	{
 		rule.setProperty("color","red");
-		document.getElementById("registerButton").disabled = true;
+		document.getElementById("addChild").disabled = true;
 		return false;
 	}
 }
 
 function VerifyNotChild()
 {
-	var input = document.getElementById("registerUsername").value;
+	var input = document.getElementById("childUsername").value;
 	var rule = document.getElementById("notChild").style;
 	if(!input.includes("_child"))
 	{
@@ -123,27 +119,8 @@ function VerifyNotChild()
 		else
 	{
 		rule.setProperty("color","red");
-		document.getElementById("registerButton").disabled = true;
+		document.getElementById("addChild").disabled = true;
 		return false;
 	}
 }
 
-
-function VerifyEmail()
-{
-	var input = document.getElementById("registerEmail").value;
-	var rule = document.getElementById("validEmail").style;
-	rule.setProperty("color","red");
-	var regex = /^((?:\w)|(?:\d)|!|&|_|\$|\.|-){2,}@((?:\w)|(?:\d)|\.|!|&|_|\$|-){2,}\.((?:\w)|(?:\d)|!|&|_|\$|\.|-){2,}$/;
-	if(regex.test(input))
-	{
-		rule.setProperty("color","green");
-		return true;
-	}
-	else
-	{
-		rule.setProperty("color","red");
-		document.getElementById("registerButton").disabled = true;
-		return false;
-	}
-}

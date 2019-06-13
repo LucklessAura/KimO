@@ -32,13 +32,13 @@ function sendAlert(code)
 					{
 						if(code == "7")
 						{
-							var aux = document.getElementById('alertMessage');
-							aux.innerHTML = "You are near danger";
+							document.getElementById('alert').play();
+							alert("You are near danger");
 						}
 						else
 						{
-							var aux = document.getElementById('alertMessage');
-							aux.innerHTML = "You are going too far, a supervisor has been alerted";
+							document.getElementById('alert').play();
+							alert("You are going too far, a supervisor has been alerted");
 						}
 					}
 					

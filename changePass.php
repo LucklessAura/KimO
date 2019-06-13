@@ -1,14 +1,3 @@
-<?php
-/*error_reporting(E_ERROR | E_PARSE);
-session_start(); //starts all the sessions 
-    if($_SESSION['userID'] != NULL) {
-        header('Location: map.html'); //take user to the map page if already logged in
-        }*/
-/*session_start();
-session_unset();
-session_destroy();*/
-?>
-
 
 <!DOCTYPE html>
 <html>
@@ -57,24 +46,23 @@ session_destroy();*/
 
 <section>
 
-<script src="javascriptFunctions/login.js"></script>
-<script src="javascriptFunctions/accountManagement.js"></script>
-
-<div class="account">
-<p>Log In</p>
-
-<form id="loginForm">
-  <input type="text" value="" id="loginUsername" placeholder="User Name"><br>
-  <input type="password" value="" id="loginPassword" placeholder="Password"><br><br>
-  <input type="checkBox" id="rememberMe">Remember Me</button>
-  </br></br>
-  <button type="button" value="" onclick="LoginFunction()">Log In</button>
-  <button type="button" value="" onclick="ResetPass()">Forgot Password</button>
-</form> 
-
-
-<p id="querryResult"></p>
+<script src="javascriptFunctions/accountManagement.js">logOut()</script>
+<br><br>
+<form id="changePasswordForm">
+  <input type="password" value="" id="newPassword" placeholder="Password" onkeyup="seeIfValid()" required ><br><br>
+  <button id ="changePassword" type="button" value="" onclick="changePasswordRequest()" disabled="true">Change Password</button>
+</form>
 </div>
+
+<div class="rules">
+     <p id = "validLong">Password should be at least 6 characters long and at most 20 and no other special characters(except for rule 2)</p>
+     <p id = "hasSymbol">Password should have at least 1 of the following symbols '-','!','&','.','$'</p>
+     <p id = "hasUpperCase">Password should have at least one uppercase letter</p>
+     <p id = "hasLowerCase">Password should have at least one lowercase letter</p>
+     <p id = "hasNumber">Password should have at least one number</p>
+</div>
+
+<p id="response"></p>
 
 </section>
 

@@ -22,7 +22,6 @@
         if($id == -1)
         {
               session_start();
-              session_unset();
               session_destroy();
             echo '-1';
             oci_close($conn);
@@ -36,9 +35,9 @@
             {
                 $sessionId= mt_rand();
                 $token = mt_rand();
-                setcookie('sessionId', $sessionId, time() + (60*60*24*30));
-                setcookie('token', $token, time() + (60*60*24*30));
-                $sql = 'BEGIN rememberLogin(:sessionId,:token,:id); END;';
+                setcookie('sessionId', $sessionId, time() + (60*60*24*30), "/");
+                setcookie('token', $token, time() + (60*60*24*30), "/");
+                $sql = 'BEGIN rememberLoginSupervisors(:sessionId,:token,:id); END;';
                 $stmt = oci_parse($conn,$sql);
                 oci_bind_by_name($stmt,':sessionId',$sessionId,50);
                 oci_bind_by_name($stmt,':token',$token,50);
@@ -77,9 +76,9 @@
             {
                 $sessionId= mt_rand();
                 $token = mt_rand();
-                setcookie('sessionId', $sessionId, time() + (60*60*24*30));
-                setcookie('token', $token, time() + (60*60*24*30));
-                $sql = 'BEGIN rememberLogin(:sessionId,:token,:id); END;';
+                setcookie('sessionId', $sessionId, time() + (60*60*24*30), "/");
+                setcookie('token', $token, time() + (60*60*24*30), "/");
+                $sql = 'BEGIN rememberLoginChildren(:sessionId,:token,:id); END;';
                 $stmt = oci_parse($conn,$sql);
                 oci_bind_by_name($stmt,':sessionId',$sessionId,50);
                 oci_bind_by_name($stmt,':token',$token,50);

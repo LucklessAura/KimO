@@ -23,12 +23,23 @@
 
 
 <?php
-    require 'phpFunctions/loggedNavbar.php';
-	session_start();
-	if(!isset($_SESSION['childId']))
-	{
-		header('Location: login.php');
-	}
+    require 'phpFunctions/isLogged.php';
+    $result = isLogged();
+    if($result > 0)
+    {
+        if($result == 1)
+        {
+             header('Location: login.php');
+        }
+        else
+        {
+            require 'phpFunctions/loggedChildNavbar.php';
+        }
+    }
+    else
+    {
+        header('Location: login.php');
+    }
 ?>
 
 <aside>
@@ -46,6 +57,8 @@
 
 
 <section>
+    
+<audio id="alert" src="alarm.mp3" preload="auto"></audio>
 
 <div id="map-container">
 
