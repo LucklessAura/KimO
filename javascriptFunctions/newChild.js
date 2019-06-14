@@ -1,4 +1,4 @@
-function newChildFunction()
+function newChildFunction() // associate new child with the user
 {
 var xhttp = new XMLHttpRequest();
 
@@ -87,7 +87,7 @@ function ifValid()
 	}
 }
 
-function VerifyTheLength()
+function VerifyTheLength()//child uusername minimum and maximum lenght verification
 {
 	var input = document.getElementById("childUsername").value;
 	var rule = document.getElementById("validLong").style;
@@ -107,7 +107,7 @@ function VerifyTheLength()
 	}
 }
 
-function VerifyNotChild()
+function VerifyNotChild() // check if username includes '_child'
 {
 	var input = document.getElementById("childUsername").value;
 	var rule = document.getElementById("notChild").style;

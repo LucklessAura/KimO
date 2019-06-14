@@ -73,6 +73,7 @@ T*: 000.000.12.00<br>
 F*: 000.000.12.01
 <br><br>
 </div>
+<a href="raport.html">Raport</a>
 </section>
 
 </main>

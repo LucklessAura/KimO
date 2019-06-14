@@ -1,3 +1,5 @@
+//create map and show current position for a user that is not logged
+
 const map = new ol.Map({
   target: 'map-container',
   layers: [
@@ -51,7 +53,7 @@ navigator.geolocation.watchPosition(function(pos) {
 	}
 	source.addFeature(supervisor);
 }, function(error) {
-  alert('ERROR: Error on location, are you on the secure link? (https)');
+  alert('ERROR: Error on location, are you on the secure link? (https), do you have the gps on?');
 }, {
   enableHighAccuracy: true
 });

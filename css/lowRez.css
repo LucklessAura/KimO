@@ -272,6 +272,14 @@ aside > input:checked ~ label + p
 	display:block;
 }
 
+html > body > main > section#mainSection  >div#childDetails
+{
+	border-radius: 100px;
+	background-color: #dbdbdb;
+	margin: 5px;
+	padding: 5px;
+	border: 3px solid #898989;
+}
 
 aside > label
 {

@@ -66,8 +66,8 @@ session_destroy();*/
 <form id="loginForm">
   <input type="text" value="" id="loginUsername" placeholder="User Name"><br>
   <input type="password" value="" id="loginPassword" placeholder="Password"><br><br>
-  <input type="checkBox" id="rememberMe">Remember Me</button>
-  </br></br>
+  <input type="checkBox" id="rememberMe">Remember Me
+  <br><br>
   <button type="button" value="" onclick="LoginFunction()">Log In</button>
   <button type="button" value="" onclick="ResetPass()">Forgot Password</button>
 </form> 

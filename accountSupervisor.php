@@ -23,6 +23,7 @@
 <label for="newsButton">  </label>
 
 <?php
+//show differnet navbar depending on who is connected
     require 'phpFunctions/isLogged.php';
     $result = isLogged();
     if($result > 0)
@@ -63,10 +64,11 @@
 <br><br>
 <script src="javascriptFunctions/newChild.js"></script>
 <script src="javascriptFunctions/accountManagement.js"></script>
+<!-- form to add child -->
 <form id="addNewChild">
   <input type="text" value="" id="childUsername" placeholder="User Name" onkeyup="ifValid()" required ><br>
-  </br></br>
-  <button type="button" value="" id="addChild" onclick="newChildFunction()" disabled="true" >Add Child</button>
+  <br><br>
+  <button type="button" value="" id="addChild" onclick="newChildFunction()" disabled>Add Child</button>
 </form> 
 
 <div class="rules">

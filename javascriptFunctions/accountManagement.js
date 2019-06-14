@@ -2,15 +2,15 @@ function logOut()
 {
 	var xhttp = new XMLHttpRequest();
 
-xhttp.open("POST","phpFunctions/logOut.php",true);
+xhttp.open("POST","phpFunctions/logOut.php",true); // set function to be called on send(backend deletes all session and cookie variables)
 
-xhttp.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+xhttp.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded"); //set header
 
 xhttp.onreadystatechange = function()
 {
 	if (this.readyState == 4 && this.status == 200) 
 	{
-		window.location.replace("index.php");
+		window.location.replace("index.php"); // on a successfull logout redirect the user to the index page
 	}
 }
 xhttp.send();
@@ -22,7 +22,7 @@ function issueResetCode()
 {
 var xhttp = new XMLHttpRequest();
 
-xhttp.open("POST","phpFunctions/issueResetCode.php",true);
+xhttp.open("POST","phpFunctions/issueResetCode.php",true);//make backend generate a reset code for a certain user, user is selected based on a provided username
 
 xhttp.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
 
@@ -72,7 +72,7 @@ xhttp.onreadystatechange = function()
 		}
 	}
 }
-var val = "username=" +document.getElementById("username").value;
+var val = "username=" +document.getElementById("username").value;//set username value
 xhttp.send(val);
 }
 
@@ -81,7 +81,7 @@ xhttp.send(val);
 
 function ResetPass()
 {
-	window.location.replace("resetPass.php");
+	window.location.replace("resetPass.php");//send to reset page
 }
 
 function changePasswordRequest()
@@ -123,15 +123,15 @@ xhttp.onreadystatechange = function()
 	}
 }
 var link = window.location.href;
-link = link.split(/\=(.+)/)[1];
+link = link.split(/\=(.+)/)[1]; // get the code from the current link
 var val = "password=" + document.getElementById("newPassword").value + "&code=" + link;
-xhttp.send(val);	
+xhttp.send(val);	//send the value of the newPassword input and the code to the backend for validation
 }
 
 
 
 
-function seeIfValid()
+function seeIfValid()//unlock button only if all the rules are respected
 {
 	var isOk=0;
 	if(VerifyLength() == true)
@@ -187,16 +187,16 @@ function VerifyLength()
 	var rule = document.getElementById("validLong").style;
 
 	rule.setProperty("color","red");
-	var regex = /^((?:\w)|(?:\d)|-|!|&|\.|\$){6,20}$/;
+	var regex = /^((?:\w)|(?:\d)|-|!|&|\.|\$){6,20}$/;//any word / numbre and the symbols '-','!','&','.','$' for a total of min 6 characters and at most 20
 	if(regex.test(input))
 	{
-		rule.setProperty("color","green");
+		rule.setProperty("color","green"); //change the assiged color to green if the rule is respected
 		return true;
 	}
 	else
 	{
-		rule.setProperty("color","red");
-		document.getElementById("changePassword").disabled = true;
+		rule.setProperty("color","red");//change the assiged color to red if the rule is not respected
+		document.getElementById("changePassword").disabled = true;//disable button if the rule is not respected
 		return false;
 	}
 }
@@ -208,7 +208,7 @@ function VerifyUpperCase()
 	var rule = document.getElementById("hasUpperCase").style;
 
 	rule.setProperty("color","red");
-	var regex = /(?=.*[A-Z])/;
+	var regex = /(?=.*[A-Z])/;//verify that at least 1 uppercase letter exists
 	if(regex.test(input))
 	{
 		rule.setProperty("color","green");
@@ -228,7 +228,7 @@ function VerifyLowerCase()
 	var rule = document.getElementById("hasLowerCase").style;
 
 	rule.setProperty("color","red");
-	var regex = /(?=.*[a-z])/;
+	var regex = /(?=.*[a-z])/;//verify that at least 1 lowercase letter exists
 	if(regex.test(input))
 	{
 		rule.setProperty("color","green");
@@ -248,7 +248,7 @@ function VerifyNumber()
 	var rule = document.getElementById("hasNumber").style;
 
 	rule.setProperty("color","red");
-	var regex = /(?=.*\d)/;
+	var regex = /(?=.*\d)/;//verify that at least 1 number exists
 	if(regex.test(input))
 	{
 		rule.setProperty("color","green");
@@ -268,7 +268,7 @@ function VerifySymbol()
 	var rule = document.getElementById("hasSymbol").style;
 
 	rule.setProperty("color","red");
-	var regex = /(?=.*(-|!|&|\.|\$))/;
+	var regex = /(?=.*(-|!|&|\.|\$))/;//verify that at least 1 of the following symbols exists '-','!','&','.','$'
 	if(regex.test(input))
 	{
 		rule.setProperty("color","green");

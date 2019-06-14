@@ -1,4 +1,4 @@
-const map = new ol.Map({
+const map = new ol.Map({ //create map object
   target: 'map-container',
   layers: [
     new ol.layer.Tile({
@@ -18,7 +18,7 @@ const layer = new ol.layer.Vector({
 
 });
 
-function clearDangerSpots()
+function clearDangerSpots()//delete all danger points in database associated with user
 {
 	var xhttp = new XMLHttpRequest();
 
@@ -81,7 +81,7 @@ navigator.geolocation.watchPosition(function(pos) {
 		lastUpdate = Date.now();
 	}
 }, function(error) {
-  alert('ERROR: Error on location, are you on the secure link? (https)');
+   alert('ERROR: Error on location, are you on the secure link? (https), do you have the gps on?');
 }, {
   enableHighAccuracy: true
 });
@@ -140,7 +140,7 @@ const layerChildren = new ol.layer.Vector({
 
 map.addLayer(layerChildren);
 
-function addChildren()
+function addChildren()// get a string of coordinates and names representing the children associated wit the user
 {
 	var xhttp = new XMLHttpRequest();
 
@@ -159,7 +159,7 @@ function addChildren()
 			}
 			else 
 			{
-				sourceChildren.clear();
+				sourceChildren.clear();// clear layer of children
 				var array = response.split('&');
 				for(var i =0;i<array.length-1;i++)
 				{
@@ -176,7 +176,7 @@ function addChildren()
 
 
 
-function showChildOnMap(name,coordinates)
+function showChildOnMap(name,coordinates)// add children to layer one by one
 {
 	coordinates = coordinates.split(',');
 	coordinates[1] = parseFloat(coordinates[1]);
@@ -207,7 +207,7 @@ setInterval(function() {
 	  addChildren();
 }, 3000);
 
-var dblClickInteraction;
+var dblClickInteraction;//delete zoom on doubleclick 
 // find DoubleClickZoom interaction
 map.getInteractions().getArray().forEach(function(interaction) {
   if (interaction instanceof ol.interaction.DoubleClickZoom) {
@@ -230,7 +230,7 @@ const layerDanger = new ol.layer.Vector({
 map.addLayer(layerDanger);
 
 var dangerNumber = 0;
-map.on('singleclick', function(evt){
+map.on('singleclick', function(evt){//add event, on singleclick put a danger zone at the pointer coordinates
     var coord = evt.coordinate;
 	coord = ol.proj.transform(coord, 'EPSG:3857', 'EPSG:4326');
 	writeDangerToDatabase(coord);
@@ -264,7 +264,7 @@ map.on('singleclick', function(evt){
 	dangerNumber++;
 });
 	
-map.on('dblclick', function (e) {
+map.on('dblclick', function (e) {// add event , on doubleclick on a danger zone remove it from the database and layer(map sometimes gets wrong coordinates => some danger points remain in the database and on the asociated children maps)
 	
 	e = ol.proj.transform(e.coordinate, 'EPSG:3857', 'EPSG:4326');
     var features = map.getFeaturesAtPixel(map.getPixelFromCoordinate(ol.proj.fromLonLat(e) ));
@@ -276,7 +276,7 @@ map.on('dblclick', function (e) {
 });
 
 
-function writeDangerToDatabase(coords)
+function writeDangerToDatabase(coords) // write danger point to database
 {
 	var xhttp = new XMLHttpRequest();
 
@@ -299,7 +299,7 @@ function writeDangerToDatabase(coords)
 }
 
 
-function deleteDangerFromDatabase(coords)
+function deleteDangerFromDatabase(coords)//delete danger point from database
 {
 	var xhttp = new XMLHttpRequest();
 

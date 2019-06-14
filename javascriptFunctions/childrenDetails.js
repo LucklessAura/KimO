@@ -33,9 +33,9 @@ xhttp.onreadystatechange = function()
 			}
 			default:
 			{
-				response = response.split('&');
+				response = response.split('&'); //response is an array of values with '&' as a delimiter, '&' and ';' are often used as delimiters in these situations  
 				var node = document.getElementById('mainSection');
-				for(var i=0;i<response.length-1;i++)
+				for(var i=0;i<response.length-1;i++)//for each value in the array create a div with the elements 
 				{
 					var indInfo=response[i].split(';');
 					var div = document.createElement('div');

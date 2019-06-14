@@ -45,13 +45,19 @@
 <aside>
     <br><br>
     <label for="distance">Maximim distance between you and children(in meters) :</label>
-    <input type="number" id="distance" name="distance" min="0" value="500">
+    <input type="number" id="distance" name="distance" min="5" value="500">
      <br><br>
     <label for="distance">Danger points range(in meters) :</label>
-    <input type="number" id="dangerRange" name="distance" min="0" value="100">
+    <input type="number" id="dangerRange" name="distance" min="1" value="100">
     <br><br>
     <label for="distance">Don't show children who are offline for more than(minutes):</label>
     <input type="number" id="offlineTime" name="distance" min="1" value="5">
+	
+	<br><br>
+	<p>Single click/tap to add a danger spot</p>
+
+	<br><br>
+	<p>Double click/tap on a danger spot to remove it</p>
 
 </aside>
 

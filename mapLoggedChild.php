@@ -52,7 +52,7 @@
 <button type="button" value="" onclick="sendAlert(4)">I'm lost</button>
 <button type="button" value="" onclick="sendAlert(6)">Other SOS</button>
 
-<p id ="alertMessage" value=""></p>
+<p id ="alertMessage"></p>
 </aside>
 
 

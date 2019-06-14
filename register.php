@@ -62,9 +62,9 @@ session_destroy();*/
 <div class="accountCreation">
 <p>Register</p>
 <form id="registerForm">
-    <input type="text" id="registerUsername" placeholder="User Name" onkeyup="ifValid()" required ><br></br>
+    <input type="text" id="registerUsername" placeholder="User Name" onkeyup="ifValid()" required ><br><br>
   <input type="text" value="" id="registerEmail" placeholder="Email" onkeyup="ifValid()" required ><br><br>
-  <button id ="registerButton" type="button" value="" onclick="RegisterFunction()" disabled="true">Register</button>
+  <button id ="registerButton" type="button" value="" onclick="RegisterFunction()" disabled>Register</button>
 </form>
 </div>
 

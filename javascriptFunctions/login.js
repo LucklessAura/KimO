@@ -39,7 +39,7 @@ xhttp.onreadystatechange = function()
 			}
 			else
 			{
-				if(response.trim() == "1")
+				if(response.trim() == "1")//redirect to one of the maps dependin on who is logged
 					window.location.replace("mapLoggedSupervisor.php");
 				else 
 					if(response.trim() == "2")

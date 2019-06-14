@@ -10,8 +10,8 @@ echo '<nav>
 <ul>
 	
 <li><a href="index.php"> Home</a></li>
-<li><a href="mapLoggedSupervisor.php"> Map</a></li>
-<li><a href="account.php">Account</a></li>
+<li><a href="mapLoggedChild.php"> Map</a></li>
+<li><a href="accountChild.php"> Account</a></li>
 <li><a href="contact.php"> Contact</a></li>
 
 </ul>

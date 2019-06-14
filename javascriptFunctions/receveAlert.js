@@ -1,4 +1,4 @@
-
+//for every allert in the database with the user's id play sound and show alert on screen
 function receveAlert()
 {
 	var xhttp = new XMLHttpRequest();
@@ -85,6 +85,6 @@ function receveAlert()
 }
 
 
-setInterval(function() {
+setInterval(function() {//check for new alerts every 3 seconds
 	  receveAlert();
 }, 3000);

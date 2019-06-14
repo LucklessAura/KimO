@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+<meta charset="utf-8">
+<meta name="media type" content="HTML,text">
+<link rel="stylesheet" href="css/scholarly.min.css">
+<title>KimO</title>
+
+</head>
+
+<body>
+
+<article>
+<h1>KimO(Kid Monitor)
+</h1>
+
+<div role="contentinfo">
+
+<section typeof="AuthorsList">
+  <h2>Authors</h2>
+  <ul>
+    <li typeof="ContributorRole" property=" author">
+      <span typeof=" Person">
+        <meta property=" givenName" content="Paul">
+        <meta property=" additionalName" content="Andrei">
+        <meta property=" familyName" content="Curea">
+        <span property=" name">Curea Paul-Andrei</span>
+      </span>
+      <ul>
+        <li property=" roleContactPoint" typeof=" ContactPoint">
+          <a href="mailto:paul.curea@uaic.info.ro"
+             property=" email">paul.curea@uaic.info.ro</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+
+<section typeof="Affiliations">
+  <h2>Affiliations</h2>
+  <ul>
+    <li id="Affiliations">
+      <span typeof=" Organization" resource="https://www.info.uaic.ro/">
+        <span property=" name">Faculty of Computer Science</span>,
+        <span property=" parentOrganization">
+          <span typeof=" Organization">
+            <span property=" name">Web Technologies</span>
+            <span property=" location" typeof=" Place">
+              <span property=" address" typeof=" PostalAddress">
+                <span property=" addressLocality">Iasi</span>,
+                <span property=" addressRegion">Iasi</span>,
+                <span property=" addressCountry">Romania</span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </span>
+    </li>
+  </ul>
+</section>
+
+
+</div>
+
+ <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+      <h2>1.Abstract</h2>
+      <p>
+      KimO is a website that aims to help with child supervision, as the vast majority of children nowadays have acces to a device that is connected to the internet we can use this to our advantage
+      </p>
+ </section>
+     <section id="Guide">
+            <!-- review? -->
+            <h2>2.Guide</h2>
+
+            <section id="Register-Login">
+              <!-- review? -->
+              <h3>2.1.Register & Login</h3>
+              <p>
+                    A user can register as a supervisor, from there into the account page he can bind a child to his email. After a supervisor finished the register form he will get an email with his choosen username and a random 10 character password, those can be used to login into the page. A supervisor can add a child, the same process will be repeated, an email will be sent to the user where he will find the username and a random 10 character password for the child, with those the child can authentificate from the same login page.
+              </p>
+            </section>
+            <section id="PassChange">
+              <!-- review? -->
+              <h3>2.2.Password change</h3>
+              <p>
+                  On the login page there also is a 'Forgot Password' button, upon pressing it the user will be redirected to a new page where he needs to introduce his username, by pressing the 'Issue Reset Email' button an email will be sent to the user, the email contains a link where the user can change his password. The same process can be executed from the account page after logging in from the 'Change Password' page. This functionality is avariable for bith supervisors and children.
+              </p>
+            </section>
+            <section id="NavBar">
+              <!-- review? -->
+              <h3>2.3.Navigation Bar</h3>
+              <p>
+                The navigation bar is the main tool for traversing the webpage, this navigation bar changes based on the authentification status, the navigation bar is always in the upper part of the page, on smaller screens this will be hidden insead a button is placed in the top-rigth crner, by pressing the button a user can show/hide the navigation bar.
+              </p>
+            </section>
+            <section id="Homepage">
+              <!-- review? -->
+              <h3>2.4.Homepage</h3>
+              <p>
+                The homepage offers the user a small introduction to KimO in the center and rigth side and on the left side some news, the leftside section is hidden on smaller screen to show/hide it simply press the grey bar in te left side of the screen, this left section is present on all subpages as such the same button will apear on all the subpages on smaller devices.
+              </p>
+            </section>
+            <section id="Map">
+              <!-- review? -->
+              <h3>2.5.Map</h3>
+              <p>
+                The map subpage offers instead of an introduction a map of the world, by accepting to share the location with the webpage a small circel with 'You' written inside will appear, thi is your current location. If the user is not logged in the left side the same news will be shown, if a child is logged a few buttons will appear instead these are used to send distress signals to his supervisor, if instead a supervisor is logged 3 input fiels and 2 instructions will apear, here the user can change his radius, the radius of the danger zones and the time offline needed to hide children on the map, by simply writing in the fields the values will be aplied without any suplementary actions. On all maps there will also be a small control pannel in the top-left corner of the map, a '+' which will magify the map, a '-' which will push the map further away and a circle, upon pressing th circle the map will magnify and center on your position. the map can be also moved by click and drag (mouse) or press and drag (touchscreen) to move the map and change the zoom with the scroolwheel (mouse) or by pinch and push gestures (touchscreen). 
+              </p>
+			  <p>
+				As a child logged child besides the marker with yourself on the map will be show your supervisors position (or latest known position) as a circle wit his username written on top and besides those all danger spots that the supervisor put on the map (if any are on his map)  
+			  </p>
+			  <p>
+				As a supervisor you can add/remove danger zones as instructe in the left part of the page, those will be shown to all your children and beside these spots the children that match the critereea and their position will be shown on your map as a circel with their username on top. If a child sends a distrss signal a sound will play and a popup wit the name of the child and the cause of distres will be shown on top of the map, all operations on the page are stopped until you close the popup
+			  </p>
+            </section>
+            <section id="Login">
+              <!-- review? -->
+              <h3>2.6.Login page</h3>
+              <p>
+                On the login page there are two fields, one checkbox and two buttons, by completing the fields  and pressing 'Log In' a user can log in his account, if 'Remember Me' is checked the user will be remembered on that browser and will not need to authentificate any further until 30 days without accesing the page have passed or if he logs out from the account page. The functionality of the 'Forgot Password' has been explained in a prevoius paragraph
+              </p>
+            </section>
+            <section id="Register">
+              <!-- review? -->
+              <h3>2.7.Register Page</h3>
+              <p>
+                On this page there are two fields, one inactive button and three red texts, the text are rules and must all be met before the button will become active (this is also the case for the add child in account for a supervisor), every time a rule is accepted it wil become green, the rules begin checking only after starting to write in the fields, the rest of the register process has been explained in the 'Register & LogIn' section
+              </p>
+            </section>
+            <section id="Contact">
+              <!-- review? -->
+              <h3>2.8.Contact Page</h3>
+              <p>
+                In the contact page you can find contact information about KimO as well as this file 
+              </p>
+            </section>
+            <section id="Account">
+              <!-- review? -->
+              <h3>2.9.Account Page</h3>
+              <p>
+				This page is avariable only after logging in, here a supervior can add children. Also here all users can sign out by pressing the 'Sign Out' button, upon pressing it you will be redirected to the main page. Here you can also find the 'Change Password' button whose funtionalities have been described before.
+              </p>
+            </section>
+            <section id="ChildDets">
+              <!-- review? -->
+              <h3>2.10.Children Details</h3>
+              <p>
+                This page is only accessible by logged in supervisors, here general information about each of the bound children is shown.
+              </p>
+            </section>
+        </section>
+	<section id="technologies" >
+      <h2>3.Used Techologies</h2>
+            <section id="PHP">
+              <!-- review? -->
+              <h3>3.1.PHP</h3>
+              <p>
+               Used for backend functionalities and first download page structure.
+              </p>
+            </section>
+            <section id="HTML">
+              <!-- review? -->
+              <h3>3.2.HTML</h3>
+              <p>
+               Used for webpage structure and design.
+              </p>
+            </section>
+            <section id="CSS">
+              <!-- review? -->
+              <h3>3.3.CSS</h3>
+              <p>
+                Used for webpage design.
+              </p>
+            </section>
+            <section id="JavaScript">
+              <!-- review? -->
+              <h3>3.4.JavaScript</h3>
+              <p>
+                Used for asyncronous requests to the backend, to manage webpage dynamics and user inputs and request.
+              </p>
+            </section>
+            <section id="Oracle">
+              <!-- review? -->
+              <h3>3.5.Oracle</h3>
+              <p>
+                Used for the database.
+              </p>
+            </section>
+            <section id="PLSQL">
+              <!-- review? -->
+              <h3>3.6.PL/SQL</h3>
+              <p>
+                Used from database procedures, database-backend comunication and email composing.
+              </p>
+            </section>
+            <section id="Openlayers">
+              <!-- review? -->
+              <h3>3.7.Openlayers V5.3</h3>
+              <p>
+                Javascript library used for all maps and map operations.
+              </p>
+            </section>
+			<section id="GoogleSMTP">
+              <!-- review? -->
+              <h3>3.8.Gmail SMTP</h3>
+              <p>
+                Used to send email.
+              </p>
+            </section>
+			<section id="Stunnel">
+              <!-- review? -->
+              <h3>3.9.Stunnel</h3>
+              <p>
+                Used to make the connection between PL SQL and the Gmail SMTP.
+              </p>
+            </section>
+			<section id="Ngrok">
+              <!-- review? -->
+              <h3>3.10.Ngrok</h3>
+              <p>
+                Used for redirecting trafic from the internet to the local apache server.
+              </p>
+            </section>
+			<section id="XAMPP">
+              <!-- review? -->
+              <h3>3.11.XAMPP</h3>
+              <p>
+                Used for the apache HTTP server and PHP interpreter.
+              </p>
+            </section>
+    </section>
+	<section id="CodeManagement" >
+      <h2>4.Code management system</h2>
+      <h3>Github</h3>
+      <a href="https://github.com/LucklessAura/KimO"><p>https://github.com/LucklessAura/KimO</p></a>
+    </section>
+	<section id="structure" >
+      <h2>5.Program structure</h2>
+	     <section id="Architecture">
+              <!-- review? -->
+              <h3>5.1.Program architecture</h3>
+              <figure typeof="sa:image">
+				<img src="images/architecture.png" width="700">
+				<figcaption>Code architecture</figcaption>
+			  </figure>
+            </section>
+		<section id="CompInteraction">
+			<h3>5.2.Components interaction</h3>
+              <figure typeof="sa:image">
+				<img src="images/C4diagram.png" height="700">
+				<figcaption>Interaction between components</figcaption>
+			  </figure>
+            </section>
+			<section id="Functionalities">
+			<h3>5.2.Components functionalities</h3>
+			<p>This is not the exact structure of the code, and the methods might not exist in the code this image merely shows what each component can do on it's own</p>
+              <figure typeof="sa:image">
+				<img src="images/Functionalities.png" >
+				<figcaption>Functionalities of each component</figcaption>
+			  </figure>
+            </section>
+		   <section id="Data">
+		   <h3>5.3.Data</h3>
+			<ul>
+			<li>Location data for all users from the geolocation API</li>
+			<li>Email from superivors</li>
+			<li>Username and passwords for all users</li>
+			<li>Session IDs and tokens for already logged users</li>
+			<li>Locations for danger spots</li>
+			<li>Distress messages</li>
+			</ul>
+			<p>Data is keept mostly as strings,raw or numbers</p>
+		   </section>
+    </section>
+	<section id="video" >
+      <h2>6.Video examples</h2>
+	  <section id="DesktopVideo" >
+	  <h3>6.1.Desktop Video</h3>
+	  <figure typeof="sa:video">
+		  <video width ="700" controls>
+		   <source src="videos/KimODesktop.mp4" type="video/mp4">
+		  </video>
+		</figure>
+	  </section>
+	  <section id="MobileVideo" >
+	  <h3>6.2.Mobile Video</h3>
+	  <figure typeof="sa:video">
+		  <video height ="700" controls>
+		   <source src="videos/KimOMobile.mp4" type="video/mp4">
+		  </video>
+		</figure>
+	  </section>
+	 </section>
+	<section typeof="sa:Keywords" id="Keywords" >
+	 <h2>7.Keywords</h2>
+	<ul>
+	 <li property="schema:keywords">project</li>
+	 <li  property="schema:keywords">infoiasi</li>
+	 <li  property="schema:keywords">web</li>
+	 <li  property="schema:keywords">uaic</li>
+	 <li  property="schema:keywords">location</li>
+	 <li  property="schema:keywords">GPS</li>
+	 <li  property="schema:keywords">monitoring</li>
+	</ul>
+	</section >
+</article>
+
+<meta property="accesMode" content=' "auditory","textual","visual" '>
+<meta property="accessibilityControl" content="fullKeyboardControl"/>
+<meta property="accessibilityControl" content="fullMouseControl"/>
+</body>
+
+
+</html>

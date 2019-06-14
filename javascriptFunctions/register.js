@@ -1,3 +1,5 @@
+//check  for input validity and send to backend request to create new supervisor account
+
 function RegisterFunction()
 {
 var xhttp = new XMLHttpRequest();

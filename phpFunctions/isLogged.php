@@ -3,10 +3,9 @@
 function isLogged()
 {
     session_start();
-    if(isset($_COOKIE['sessionId']) && isset($_COOKIE['token']))
+    if(isset($_COOKIE['sessionId']) && isset($_COOKIE['token']))//verify if the cookies are null
     {
-        setcookie('sessionId', '', time()-3600);
-        setcookie('token', '', time()-3600);
+        //if cookies are not null then verify if they are valid for a supervisor in the table 
         $conn = oci_connect('STUDENT','STUDENT','localhost/XE');
         $seriesID = $_COOKIE['sessionId'];
         $token = $_COOKIE['token'];
@@ -18,6 +17,7 @@ function isLogged()
         oci_execute($stmt);
         if($response > 0)
         {
+            // if they are valid change their value(randomly) and put them in the table in the database in plce of the other pair
             $_SESSION['userId']=$response;
             $sessionId= mt_rand();
             $token = mt_rand();
@@ -33,6 +33,7 @@ function isLogged()
         }
         else
         {
+            //if the cookies were not valid for any supervisor check if they are valid for a child, the same process happens, if valid change them and replace in table
             $sql = 'BEGIN isLoginValidChildren(:seriesID,:token,:response); END;';
             $stmt = oci_parse($conn,$sql);
             oci_bind_by_name($stmt,':seriesID',$seriesID,100);
@@ -57,7 +58,7 @@ function isLogged()
         }
     }
     
-    
+    //if there are no cookies see if the session id is set for either a child or a supervisor
     if(isset($_SESSION['userId']) || isset($_SESSION['childId']))
     {
         if(isset($_SESSION['userId']) )

@@ -1,3 +1,6 @@
+//send to backend a new alert to be put in the database
+
+
 function sendAlert(code)
 {
 	var xhttp = new XMLHttpRequest();
@@ -27,6 +30,11 @@ function sendAlert(code)
 					{
 						var aux = document.getElementById('alertMessage');
 						aux.innerHTML = "Alert sent";
+						setTimeout(function()
+						{
+							aux.innerHTML = "";
+							
+						},3000);
 					}
 					else
 					{
